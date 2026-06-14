@@ -10,7 +10,7 @@ export interface ModeConfig {
 export const MODES: readonly ModeConfig[] = [
   { id: 'pitch',   label: t('nav.pitch'),   requiresMic: true  },
   { id: 'tones',   label: t('nav.tones'),   requiresMic: false },
-  { id: 'phrases', label: t('nav.phrases'), requiresMic: false },
+  { id: 'phrases', label: t('nav.phrases'), requiresMic: true  },
   { id: 'record',  label: t('nav.record'),  requiresMic: true  },
   { id: 'labo',    label: t('nav.labo'),    requiresMic: true  },
 ]
