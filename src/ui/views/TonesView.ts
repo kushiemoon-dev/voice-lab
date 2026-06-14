@@ -28,7 +28,7 @@ export class TonesView {
     this.playBtn = createButton(t('tones.play'), () => { this.toggle() }, 'primary')
 
     this.root = el('div', { class: 'view-card' },
-      el('h2', { style: 'font-size: 1rem; margin-bottom: var(--space-4);' }, t('tones.title')),
+      el('h1', { style: 'font-size: 1rem; margin-bottom: var(--space-4);' }, t('tones.title')),
       el('p', { style: 'color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--space-4);' },
         t('tones.description'),
       ),

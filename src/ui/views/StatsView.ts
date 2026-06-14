@@ -52,7 +52,7 @@ export class StatsView {
     })
 
     this.root = el('div', {},
-      el('h3', { style: 'font-size:1rem;margin-bottom:var(--space-2);' }, t('stats.title')),
+      el('h2', { style: 'font-size:1rem;margin-bottom:var(--space-2);' }, t('stats.title')),
       el('p', { class: 'description', style: 'font-size:0.875rem;color:var(--text-muted);margin-bottom:var(--space-2);' },
         t('stats.description')),
       grid,

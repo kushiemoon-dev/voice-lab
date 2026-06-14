@@ -64,7 +64,7 @@ export class LaboView {
     }
 
     this.root = el('div', { class: 'view-card', style: 'padding:var(--space-6);' },
-      el('h2', { style: 'font-size:1rem;margin-bottom:var(--space-4);' }, t('labo.title')),
+      el('h1', { style: 'font-size:1rem;margin-bottom:var(--space-4);' }, t('labo.title')),
       nav,
       this.contentZone,
     )
@@ -76,9 +76,10 @@ export class LaboView {
     let next = idx
     if (e.key === 'ArrowRight') next = (idx + 1) % buttons.length
     if (e.key === 'ArrowLeft')  next = (idx - 1 + buttons.length) % buttons.length
-    if (next !== idx) {
+    if (e.key === 'Home') next = 0
+    if (e.key === 'End')  next = buttons.length - 1
+    if (['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
       e.preventDefault()
-      buttons[next]?.click()
       buttons[next]?.focus()
     }
   }

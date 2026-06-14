@@ -31,7 +31,7 @@ export class PhrasesView {
     const btnRandom = createButton(t('phrases.random'), () => { this.showRandom() }, 'primary')
 
     this.root = el('div', { class: 'view-card' },
-      el('h2', { style: 'font-size: 1rem; margin-bottom: var(--space-3);' }, t('phrases.title')),
+      el('h1', { style: 'font-size: 1rem; margin-bottom: var(--space-3);' }, t('phrases.title')),
       el('p', { style: 'color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--space-3);' },
         t('phrases.subtitle'),
       ),

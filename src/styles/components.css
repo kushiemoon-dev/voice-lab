@@ -398,3 +398,16 @@
   .header__tagline { display: none; }
 }
 
+/* ── Forced colors (high contrast mode) ────────────────── */
+@media (forced-colors: active) {
+  .btn {
+    border: 1px solid ButtonText;
+  }
+  .header__title,
+  .landing__title {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: CanvasText;
+  }
+}
+

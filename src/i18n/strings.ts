@@ -113,10 +113,6 @@ const en = {
   'pwa.reload': 'Reload',
 
   // Error messages
-  'error.micDenied':
-    'Microphone access was denied. Please allow it in your browser settings.',
-  'error.micUnavailable': 'No microphone found on this device.',
-  'error.micGeneric': 'Could not access the microphone.',
   'error.micPermissionDenied': 'Microphone access denied. Click the mic icon in the address bar to allow.',
   'error.micNoDevice': 'No microphone detected. Plug one in and try again.',
   'error.micInsecureContext': 'This page must be loaded over HTTPS (or localhost) to access the microphone.',
@@ -171,6 +167,15 @@ const en = {
   'theme.emotions': 'Emotions',
   'theme.histoires': 'Short stories',
   'theme.virelangues': 'Tongue twisters',
+
+  // Accessibility
+  'a11y.skipToContent': 'Skip to content',
+  'a11y.switchLanguage': 'Switch to French',
+  'a11y.nav': 'Navigation',
+  'a11y.modes': 'Modes',
+
+  // Record export filename
+  'record.exportFilename': 'voice-recording.wav',
 } as const
 
 const fr: Record<keyof typeof en, string> = {
@@ -284,9 +289,6 @@ const fr: Record<keyof typeof en, string> = {
   'pwa.reload': 'Recharger',
 
   // Error messages
-  'error.micDenied': "Accès au microphone refusé. Autorisez-le dans les paramètres de votre navigateur.",
-  'error.micUnavailable': 'Aucun microphone détecté sur cet appareil.',
-  'error.micGeneric': "Impossible d'accéder au microphone.",
   'error.micPermissionDenied': "Accès au microphone refusé. Cliquez sur l'icône micro dans la barre d'adresse pour l'autoriser.",
   'error.micNoDevice': 'Aucun microphone détecté. Branchez-en un et réessayez.',
   'error.micInsecureContext': 'Cette page doit être chargée en HTTPS (ou localhost) pour accéder au microphone.',
@@ -341,6 +343,15 @@ const fr: Record<keyof typeof en, string> = {
   'theme.emotions': 'Émotions',
   'theme.histoires': 'Histoires courtes',
   'theme.virelangues': 'Virelangues',
+
+  // Accessibility
+  'a11y.skipToContent': 'Aller au contenu',
+  'a11y.switchLanguage': 'Passer en anglais',
+  'a11y.nav': 'Navigation',
+  'a11y.modes': 'Modes',
+
+  // Record export filename
+  'record.exportFilename': 'voix-enregistrement.wav',
 }
 
 export type StringKey = keyof typeof en

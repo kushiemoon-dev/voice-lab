@@ -93,7 +93,7 @@ export class PitchView {
     )
 
     this.root = el('div', { class: 'view-card', style: 'padding: var(--space-6);' },
-      el('h2', { style: 'font-size: 1rem; margin-bottom: var(--space-4);' }, t('pitch.title')),
+      el('h1', { style: 'font-size: 1rem; margin-bottom: var(--space-4);' }, t('pitch.title')),
       this.readoutEl,
       this.canvasWrap,
       legend,

@@ -18,7 +18,7 @@ export class AppShell {
     this.homeBtn = el('button', { class: 'header__home' }, t('header.home')) as HTMLButtonElement
     this.homeBtn.addEventListener('click', () => navigate(store, 'landing'))
 
-    const langBtn = el('button', { class: 'lang-toggle', 'aria-label': 'Switch language' },
+    const langBtn = el('button', { class: 'lang-toggle', 'aria-label': t('a11y.switchLanguage') },
       getLang() === 'en' ? 'FR' : 'EN',
     ) as HTMLButtonElement
     langBtn.addEventListener('click', () => {
@@ -32,12 +32,11 @@ export class AppShell {
       langBtn,
     )
 
-    const nav = el('nav', { 'aria-label': 'Navigation' })
+    const nav = el('nav', { 'aria-label': t('a11y.nav') })
 
     this.contentZone = el('main', {
       class: 'content',
       id: 'main-content',
-      role: 'tabpanel',
       tabindex: '-1',
     })
 
@@ -52,8 +51,13 @@ export class AppShell {
       }, t('footer.openSource')),
     )
 
+    const skipLink = el('a', {
+      class: 'skip-link',
+      href: '#main-content',
+    }, t('a11y.skipToContent'))
+
     this.root = el('div', { class: 'app-shell app-shell--landing' },
-      header, nav, this.contentZone, footer,
+      skipLink, header, nav, this.contentZone, footer,
     )
 
     this.tabBar.mount(nav)
@@ -72,9 +76,12 @@ export class AppShell {
     const onTool = state.screen === 'tool'
     this.root.classList.toggle('app-shell--landing', !onTool)
     this.root.classList.toggle('app-shell--tool', onTool)
-    // Maintient aria-labelledby sur le tabpanel selon l'onglet actif
     if (onTool && state.micStatus === 'granted') {
+      this.contentZone.setAttribute('role', 'tabpanel')
       this.contentZone.setAttribute('aria-labelledby', `tab-${state.activeMode}`)
+    } else {
+      this.contentZone.removeAttribute('role')
+      this.contentZone.removeAttribute('aria-labelledby')
     }
   }
 

@@ -66,7 +66,7 @@ export default defineConfig({
         theme_color: '#0e1116',
         background_color: '#0e1116',
         display: 'standalone',
-        start_url: '/app',
+        start_url: '/',
         scope: '/',
         categories: ['health', 'education', 'utilities'],
         icons: [
