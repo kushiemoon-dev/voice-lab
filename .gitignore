@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.js
+!public/worklet/*.js
+*.js.map
+.DS_Store
+
+# Dev artifacts
+.playwright-mcp/
+docs/
+*.png
+*.wav
+
+# Claude Code / AI tooling
+.claude/
+*.claude
+.cursorrules
