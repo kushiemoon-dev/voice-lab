@@ -15,6 +15,8 @@ export class MicPermissionGate {
     this.root = el('div', {
       class: 'view-card',
       style: 'max-width: 480px; margin: 4rem auto; text-align: center;',
+      'aria-live': 'polite',
+      'aria-atomic': 'true',
     })
     this.render()
   }
@@ -23,12 +25,15 @@ export class MicPermissionGate {
     const state = this.store.getState()
 
     if (state.micStatus === 'error' && state.micError) {
+      const retryBtn = this.buildButton()
       this.root.replaceChildren(
-        el('p', { style: 'color: var(--error); margin-bottom: 1rem;' },
-          `⚠ ${state.micError.message}`
+        el('p', { role: 'alert', style: 'color: var(--error); margin-bottom: 1rem;' },
+          el('span', { 'aria-hidden': 'true' }, '⚠ '),
+          state.micError.message,
         ),
-        this.buildButton(),
+        retryBtn,
       )
+      retryBtn.focus()
       return
     }
 
@@ -40,7 +45,7 @@ export class MicPermissionGate {
     }
 
     this.root.replaceChildren(
-      el('h2', { style: 'margin-bottom: 1rem; font-size: 1.1rem;' }, t('gate.title')),
+      el('h1', { style: 'margin-bottom: 1rem; font-size: 1.1rem;' }, t('gate.title')),
       el('p', { style: 'color: var(--text-muted); margin-bottom: 1.5rem;' },
         t('gate.description')
       ),

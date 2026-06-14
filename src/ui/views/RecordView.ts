@@ -50,11 +50,12 @@ export class RecordView {
 
     this.waveCanvas = el('canvas', {
       width: '800', height: '80',
+      'aria-hidden': 'true',
       style: 'width: 100%; height: 80px; border-radius: var(--radius-md); background: var(--surface-raised); display: none; margin-top: var(--space-4);',
     }) as unknown as HTMLCanvasElement
 
     this.root = el('div', { class: 'view-card' },
-      el('h2', { style: 'margin-bottom: var(--space-2);' }, t('record.title')),
+      el('h1', { style: 'margin-bottom: var(--space-2);' }, t('record.title')),
       el('p', { style: 'color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--space-5);' }, t('record.privacy')),
       el('div', { style: 'display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;' },
         this.recordBtn, this.recDot, this.durationEl,
@@ -214,7 +215,7 @@ export class RecordView {
     }
     const a = document.createElement('a')
     a.href = 'data:audio/wav;base64,' + btoa(parts.join(''))
-    a.download = 'voix-enregistrement.wav'
+    a.download = t('record.exportFilename')
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
