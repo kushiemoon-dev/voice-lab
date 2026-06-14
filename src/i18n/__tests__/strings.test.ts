@@ -30,7 +30,6 @@ const allKeys: StringKey[] = [
   'quality.issues', 'quality.warnings', 'quality.monitor',
   'quality.level.normal', 'quality.level.borderline', 'quality.level.high', 'quality.level.low',
   'pwa.updateAvailable', 'pwa.reload',
-  'error.micDenied', 'error.micUnavailable', 'error.micGeneric',
   'error.micPermissionDenied', 'error.micNoDevice', 'error.micInsecureContext',
   'error.micUnsupportedBrowser', 'error.micUnknown',
   'tones.title', 'tones.description', 'tones.selectPlaceholder', 'tones.play', 'tones.stop',
@@ -42,6 +41,8 @@ const allKeys: StringKey[] = [
   'quality.warning.borderlineJitter', 'quality.warning.borderlineShimmer', 'quality.warning.borderlineHNR',
   'theme.general', 'theme.questions', 'theme.douceur', 'theme.quotidien',
   'theme.respiration', 'theme.nature', 'theme.emotions', 'theme.histoires', 'theme.virelangues',
+  'a11y.skipToContent', 'a11y.switchLanguage', 'a11y.nav', 'a11y.modes',
+  'record.exportFilename',
 ]
 
 describe('strings catalog', () => {

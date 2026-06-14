@@ -49,3 +49,38 @@ canvas {
   white-space: nowrap;
   border-width: 0;
 }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: var(--space-2);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--trans-blue);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  left: var(--space-4);
+  outline: 2px solid var(--trans-blue);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid ButtonText;
+    outline-offset: 2px;
+  }
+  .skip-link {
+    border-color: ButtonText;
+  }
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    outline-color: ButtonText;
+  }
+}

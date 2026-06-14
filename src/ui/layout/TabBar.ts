@@ -2,13 +2,14 @@ import type { Store } from '../../app/store'
 import type { AppState, ActiveMode } from '../../app/state'
 import { MODES } from '../../app/modes'
 import { el } from '../../lib/dom'
+import { t } from '../../i18n/strings'
 
 export class TabBar {
   private readonly root: HTMLElement
   private unsubscribe: (() => void) | null = null
 
   constructor(private readonly store: Store<AppState>) {
-    this.root = el('div', { class: 'tabbar', role: 'tablist', 'aria-label': 'Modes' })
+    this.root = el('div', { class: 'tabbar', role: 'tablist', 'aria-label': t('a11y.modes') })
     MODES.forEach(mode => this.root.append(this.buildTab(mode.id, mode.label)))
   }
 
@@ -29,14 +30,15 @@ export class TabBar {
 
   private handleArrowKey(e: KeyboardEvent): void {
     const tabs = Array.from(this.root.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
-    const idx = tabs.findIndex(t => t === e.currentTarget)
+    const idx = tabs.findIndex(tab => tab === e.currentTarget)
     if (idx < 0) return
     let next = idx
     if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length
     if (e.key === 'ArrowLeft')  next = (idx - 1 + tabs.length) % tabs.length
-    if (next !== idx) {
+    if (e.key === 'Home') next = 0
+    if (e.key === 'End')  next = tabs.length - 1
+    if (['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
       e.preventDefault()
-      tabs[next]?.click()
       tabs[next]?.focus()
     }
   }
