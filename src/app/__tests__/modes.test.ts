@@ -15,8 +15,8 @@ describe('MODES', () => {
   it('tones does not require mic', () => {
     expect(MODES.find(m => m.id === 'tones')?.requiresMic).toBe(false)
   })
-  it('phrases does not require mic', () => {
-    expect(MODES.find(m => m.id === 'phrases')?.requiresMic).toBe(false)
+  it('phrases requires mic', () => {
+    expect(MODES.find(m => m.id === 'phrases')?.requiresMic).toBe(true)
   })
   it('record requires mic', () => {
     expect(MODES.find(m => m.id === 'record')?.requiresMic).toBe(true)
