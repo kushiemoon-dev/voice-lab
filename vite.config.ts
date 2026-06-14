@@ -95,5 +95,39 @@ export default defineConfig({
   test: {
     environment: 'happy-dom',
     include: ['src/**/__tests__/*.test.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json-summary'],
+      include: ['src/**/*.ts'],
+      exclude: [
+        'src/**/__tests__/**',
+        'src/vite-env.d.ts',
+        // Entry point & app bootstrap
+        'src/main.ts',
+        'src/app/App.ts',
+        // Web Audio API — not available in happy-dom
+        'src/audio/AudioEngine.ts',
+        'src/audio/featureDetect.ts',
+        'src/audio/microphone.ts',
+        'src/audio/pitch/PitchEstimator.ts',
+        'src/audio/pitch/pitchyEstimator.ts',
+        'src/audio/recorder/playback.ts',
+        'src/audio/tones/**',
+        'src/audio/worklet/**',
+        // Canvas 2D API — not available in happy-dom
+        'src/ui/canvas/canvasUtils.ts',
+        'src/ui/canvas/*Renderer.ts',
+        // UI views & layout — DOM-heavy, integration-tested elsewhere
+        'src/ui/views/**',
+        'src/ui/layout/**',
+        'src/ui/components/**',
+      ],
+      thresholds: {
+        statements: 80,
+        functions: 80,
+        lines: 80,
+        branches: 70,
+      },
+    },
   },
 })
