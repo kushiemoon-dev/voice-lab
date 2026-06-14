@@ -136,12 +136,6 @@ export class PitchView {
         this.hzEl.style.color = readoutColorForHz(hz)
         this.noteEl.textContent = hzToNoteName(hz)
         this.liveRegion.announce(`${Math.round(hz)} Hz, ${hzToNoteName(hz)}`)
-      } else {
-        if (!this.isIdle) {
-          this.readoutEl.replaceChildren(this.idleEl)
-          this.hzEl.style.color = 'var(--text)'
-          this.isIdle = true
-        }
       }
     })
   }
