@@ -19,7 +19,7 @@ Voice Lab gives you real-time audio feedback to help explore, train, and underst
 |------|-------------|
 | **Pitch** | Live pitch graph with band indicators for masculine, non-binary, and feminine ranges; scrolling history; target line |
 | **Tones** | Reference notes and scales across your vocal range — useful for ear training |
-| **Phrases** | Practice sentences across 9 themes (general, questions, nature, stories, and more) |
+| **Phrases** | Practice sentences across 9 themes — with live pitch graph and recording so you can hear yourself back |
 | **Record** | Record, replay, and export as WAV — locally, nothing is sent anywhere |
 | **Lab — Spectrogram** | Time × frequency heatmap scrolling in real time |
 | **Lab — Harmonics** | FFT harmonic series visualisation |
