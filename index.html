@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0e1116" />
+
+    <title>Voice Lab — Real-time voice training for trans &amp; non-binary voices</title>
+    <meta name="description" content="Free, 100% local voice training tool for trans and non-binary voices. Analyse pitch in real time, explore tones, record locally. Nothing leaves your device." />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://voice-lab.kushie.dev/" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- TODO(T5): <link rel="manifest"> injected by vite-plugin-pwa at build time -->
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Voice Lab" />
+    <meta property="og:title" content="Voice Lab — Real-time voice training for trans &amp; non-binary voices" />
+    <meta property="og:description" content="Free, 100% local voice training tool for trans and non-binary voices. Analyse pitch in real time, explore tones, record locally. Nothing leaves your device." />
+    <meta property="og:url" content="https://voice-lab.kushie.dev/" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:image" content="https://voice-lab.kushie.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Voice Lab — voice training, 100% local" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Voice Lab — Real-time voice training for trans &amp; non-binary voices" />
+    <meta name="twitter:description" content="Free, 100% local voice training tool for trans and non-binary voices. Nothing leaves your device." />
+    <meta name="twitter:image" content="https://voice-lab.kushie.dev/og-image.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Voice Lab",
+      "url": "https://voice-lab.kushie.dev/",
+      "description": "Free, 100% local voice training tool for trans and non-binary voices. Analyse pitch in real time, explore tones, record locally. Nothing leaves your device.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "browserRequirements": "Requires JavaScript and a microphone. HTTPS required. Chrome, Edge or Firefox recommended.",
+      "featureList": [
+        "Real-time pitch visualisation",
+        "Reference tones and scales",
+        "Practice sentences",
+        "Local recording and playback",
+        "Spectrogram and voice quality analysis"
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <noscript>
+        <p>Voice Lab requires JavaScript to analyse your voice in real time.</p>
+        <p>It is a free, 100% local tool — no data is ever sent anywhere. Please enable JavaScript, or use a recent browser (Chrome, Edge, Firefox) on HTTPS.</p>
+      </noscript>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
