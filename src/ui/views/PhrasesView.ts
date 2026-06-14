@@ -12,8 +12,18 @@ import { loadCaptureWorklet } from '../../audio/worklet/workletLoader'
 import { playSnapshot } from '../../audio/recorder/playback'
 import { encodeWav } from '../../audio/recorder/wav'
 import { createResizeObserver } from '../canvas/canvasUtils'
+import { hzToNoteName } from '../../domain/noteFrequencies'
+import { VOICE_RANGES } from '../../domain/voiceRanges'
 import type { AudioEngine } from '../../audio/AudioEngine'
 import { t } from '../../i18n/strings'
+
+function readoutColorForHz(hz: number): string {
+  const range = VOICE_RANGES.find(r => hz >= r.minHz && hz <= r.maxHz)
+  if (!range) return 'var(--text)'
+  if (range.id === 'masculine') return '#5bcefa'
+  if (range.id === 'feminine')  return '#f5a9b8'
+  return 'var(--text)'
+}
 
 const MAX_SECONDS = 30
 type RecordState = 'idle' | 'recording' | 'stopped'
@@ -36,6 +46,11 @@ export class PhrasesView {
   private lastSampleAt = 0
   private unsubFrame: (() => void) | null = null
   private resizeObserver: ResizeObserver | null = null
+  private readonly readoutEl: HTMLElement
+  private readonly hzEl: HTMLElement
+  private readonly noteEl: HTMLElement
+  private readonly idleEl: HTMLElement
+  private isIdle = true
 
   // Record
   private recordState: RecordState = 'idle'
@@ -67,6 +82,12 @@ export class PhrasesView {
     const btnPrev   = createButton(t('phrases.prev'),   () => { this.navigate(-1) })
     const btnNext   = createButton(t('phrases.next'),   () => { this.navigate(1) })
     const btnRandom = createButton(t('phrases.random'), () => { this.showRandom() }, 'primary')
+
+    // Readout live
+    this.hzEl   = el('span', { class: 'pitch-readout__hz'   }, '—')
+    this.noteEl = el('span', { class: 'pitch-readout__note' }, '')
+    this.idleEl = el('span', { class: 'pitch-readout__idle' }, t('pitch.idle'))
+    this.readoutEl = el('div', { class: 'pitch-readout' }, this.idleEl)
 
     // Pitch graph
     this.pitchCanvas = el('canvas', {
@@ -114,6 +135,7 @@ export class PhrasesView {
         btnPrev, btnNext, btnRandom,
       ),
       el('div', { style: 'margin-top: var(--space-3);' }, this.counterEl),
+      this.readoutEl,
       this.pitchWrap,
       el('div', { style: 'display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);' },
         this.recordBtn, this.recDot, this.durationEl,
@@ -174,6 +196,13 @@ export class PhrasesView {
         this.renderer.pushPoint(hz)
       }
       if (hz !== null) {
+        if (this.isIdle) {
+          this.readoutEl.replaceChildren(this.hzEl, this.noteEl)
+          this.isIdle = false
+        }
+        this.hzEl.textContent = `${Math.round(hz)} Hz`
+        this.hzEl.style.color = readoutColorForHz(hz)
+        this.noteEl.textContent = hzToNoteName(hz)
         this.liveRegion.announce(`${Math.round(hz)} Hz`)
       }
     })
