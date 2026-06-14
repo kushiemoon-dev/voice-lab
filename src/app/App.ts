@@ -137,9 +137,12 @@ export class App {
       case 'tones':
         view = new TonesView(this.engine)
         break
-      case 'phrases':
-        view = new PhrasesView()
+      case 'phrases': {
+        const phrasesView = new PhrasesView(this.engine)
+        void phrasesView.mount(stream)
+        view = phrasesView
         break
+      }
       case 'record': {
         const recordView = new RecordView()
         void recordView.mount(offscreen, stream, this.engine)
