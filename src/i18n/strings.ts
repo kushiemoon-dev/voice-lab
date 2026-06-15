@@ -60,6 +60,7 @@ const en = {
   // Record view
   'record.privacy': 'Nothing leaves your device. The recording is held in RAM only.',
   'record.listen': 'Listen back',
+  'record.listenStop': 'Stop',
   'record.clear': 'Clear',
   'record.status.ready': 'Ready',
   'record.title': 'Recording',
@@ -236,6 +237,7 @@ const fr: Record<keyof typeof en, string> = {
   // Record view
   'record.privacy': "Rien ne quitte votre appareil. L'enregistrement est conservé uniquement en RAM.",
   'record.listen': 'Écouter',
+  'record.listenStop': 'Arrêter',
   'record.clear': 'Effacer',
   'record.status.ready': 'Prêt',
   'record.title': 'Enregistrement',
