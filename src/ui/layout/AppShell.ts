@@ -44,7 +44,7 @@ export class AppShell {
       el('p', {}, t('footer.privacy')),
       el('p', {}, t('footer.disclaimer')),
       el('a', {
-        href: 'https://github.com/kushiemoon-dev/voice-tools',
+        href: 'https://github.com/kushiemoon-dev/voice-lab',
         class: 'footer__link',
         target: '_blank',
         rel: 'noopener noreferrer',
