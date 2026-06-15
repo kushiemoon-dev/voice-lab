@@ -57,6 +57,7 @@ export class PhrasesView {
   private ringBuffer: RingBuffer
   private sampleRate = 48000
   private tickInterval: ReturnType<typeof setInterval> | null = null
+  private playbackSource: AudioBufferSourceNode | null = null
   private readonly recordBtn: HTMLButtonElement
   private readonly listenBtn: HTMLButtonElement
   private readonly exportBtn: HTMLButtonElement
@@ -227,6 +228,7 @@ export class PhrasesView {
   }
 
   private startRecording(): void {
+    this.stopPlayback()
     this.recordState = 'recording'
     this.ringBuffer.clear()
     this.waveCanvas.style.display = 'none'
@@ -300,9 +302,23 @@ export class PhrasesView {
   }
 
   private onListen(): void {
+    if (this.playbackSource) { this.stopPlayback(); return }
     const audioCtx = this.engine.getContext()
     if (!audioCtx) return
-    playSnapshot(this.ringBuffer.snapshot(), this.sampleRate, audioCtx)
+    this.playbackSource = playSnapshot(
+      this.ringBuffer.snapshot(), this.sampleRate, audioCtx,
+      () => { this.onPlaybackEnded() },
+    )
+    this.listenBtn.textContent = `⏹ ${t('record.listenStop')}`
+  }
+
+  private stopPlayback(): void {
+    try { this.playbackSource?.stop() } catch {}
+  }
+
+  private onPlaybackEnded(): void {
+    this.playbackSource = null
+    this.listenBtn.textContent = `▶ ${t('record.listen')}`
   }
 
   private async onExport(): Promise<void> {
@@ -334,6 +350,7 @@ export class PhrasesView {
   }
 
   private onClear(): void {
+    this.stopPlayback()
     this.recordState = 'idle'
     this.ringBuffer.clear()
     this.listenBtn.disabled = true
@@ -346,6 +363,7 @@ export class PhrasesView {
   }
 
   destroy(): void {
+    this.stopPlayback()
     this.unsubFrame?.()
     this.resizeObserver?.disconnect()
     this.smoother.reset()
