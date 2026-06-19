@@ -43,6 +43,10 @@ const allKeys: StringKey[] = [
   'theme.respiration', 'theme.nature', 'theme.emotions', 'theme.histoires', 'theme.virelangues',
   'a11y.skipToContent', 'a11y.switchLanguage', 'a11y.nav', 'a11y.modes',
   'record.exportFilename',
+  'intonation.rangeLabel', 'intonation.semitones', 'intonation.flat',
+  'intonation.melodic', 'intonation.varied', 'intonation.context', 'intonation.waiting',
+  'volume.level.verysoft', 'volume.level.soft', 'volume.level.moderate',
+  'volume.level.loud', 'volume.level.veryloud',
 ]
 
 describe('strings catalog', () => {

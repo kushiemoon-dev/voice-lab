@@ -15,6 +15,7 @@ import { createResizeObserver } from '../canvas/canvasUtils'
 import { hzToNoteName } from '../../domain/noteFrequencies'
 import type { AudioEngine } from '../../audio/AudioEngine'
 import { t } from '../../i18n/strings'
+import { PitchStatsAccumulator } from '../../analysis/pitchStats'
 
 const MAX_SECONDS = 30
 type RecordState = 'idle' | 'recording' | 'stopped'
@@ -42,6 +43,12 @@ export class PhrasesView {
   private readonly noteEl: HTMLElement
   private readonly idleEl: HTMLElement
   private isIdle = true
+
+  // Intonation
+  private readonly intonationAcc = new PitchStatsAccumulator()
+  private readonly intonationRangeEl: HTMLElement
+  private readonly intonationLabelEl: HTMLElement
+  private lastIntonationUpdate = 0
 
   // Record
   private recordState: RecordState = 'idle'
@@ -90,6 +97,10 @@ export class PhrasesView {
     this.renderer = new PitchGraphRenderer(this.pitchCanvas)
     this.liveRegion = new ScreenReaderLive(2000)
 
+    // Intonation readout
+    this.intonationRangeEl = el('span', { class: 'intonation-range' })
+    this.intonationLabelEl = el('span', { class: 'intonation-label' }, t('intonation.waiting'))
+
     // Record controls
     this.recordBtn = createButton(t('record.start'), () => { this.onToggleRecord() }, 'primary')
     this.listenBtn = createButton(`▶ ${t('record.listen')}`, () => { this.onListen() })
@@ -129,6 +140,13 @@ export class PhrasesView {
       el('div', { style: 'margin-top: var(--space-3);' }, this.counterEl),
       this.readoutEl,
       this.pitchWrap,
+      el('div', { class: 'intonation-block', style: 'margin-top: var(--space-3); font-size: 0.85rem; color: var(--text-muted);' },
+        el('span', { style: 'margin-right: var(--space-2);' }, t('intonation.rangeLabel'), ' : '),
+        this.intonationRangeEl,
+        el('span', { style: 'margin: 0 var(--space-2);' }, ' — '),
+        this.intonationLabelEl,
+        el('p', { style: 'margin: var(--space-1) 0 0; font-style: italic; opacity: 0.7;' }, t('intonation.context')),
+      ),
       el('div', { style: 'display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);' },
         this.recordBtn, this.recDot, this.durationEl,
       ),
@@ -155,6 +173,8 @@ export class PhrasesView {
     if (!phrase) return
     this.textEl.textContent = `"${phrase.text}"`
     this.counterEl.textContent = `${t('phrases.counter')} ${index + 1} / ${this.filtered.length}`
+    this.intonationAcc.reset()
+    this.updateIntonationDisplay()
   }
 
   private navigate(delta: number): void {
@@ -186,6 +206,13 @@ export class PhrasesView {
       if (now - this.lastSampleAt >= SAMPLE_INTERVAL_MS) {
         this.lastSampleAt = now
         this.renderer.pushPoint(hz)
+      }
+      if (hz !== null && hz >= 60) {
+        this.intonationAcc.push(hz)
+        if (now - this.lastIntonationUpdate >= 1000) {
+          this.lastIntonationUpdate = now
+          this.updateIntonationDisplay()
+        }
       }
       if (hz !== null) {
         if (this.isIdle) {
@@ -350,6 +377,21 @@ export class PhrasesView {
     this.durationEl.textContent = `0s / ${MAX_SECONDS}s`
     this.waveCanvas.style.display = 'none'
     this.statusLive.textContent = t('record.status.cleared')
+  }
+
+  private updateIntonationDisplay(): void {
+    const s = this.intonationAcc.getStats()
+    if (s.f0RangeSemitones === null) {
+      this.intonationRangeEl.textContent = ''
+      this.intonationLabelEl.textContent = t('intonation.waiting')
+      return
+    }
+    const st = s.f0RangeSemitones
+    const label = st < 3 ? t('intonation.flat')
+      : st <= 9 ? t('intonation.melodic')
+      : t('intonation.varied')
+    this.intonationRangeEl.textContent = `${st} ${t('intonation.semitones')}`
+    this.intonationLabelEl.textContent = label
   }
 
   destroy(): void {
