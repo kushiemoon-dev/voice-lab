@@ -13,17 +13,8 @@ import { playSnapshot } from '../../audio/recorder/playback'
 import { encodeWav } from '../../audio/recorder/wav'
 import { createResizeObserver } from '../canvas/canvasUtils'
 import { hzToNoteName } from '../../domain/noteFrequencies'
-import { VOICE_RANGES } from '../../domain/voiceRanges'
 import type { AudioEngine } from '../../audio/AudioEngine'
 import { t } from '../../i18n/strings'
-
-function readoutColorForHz(hz: number): string {
-  const range = VOICE_RANGES.find(r => hz >= r.minHz && hz <= r.maxHz)
-  if (!range) return 'var(--text)'
-  if (range.id === 'masculine') return '#5bcefa'
-  if (range.id === 'feminine')  return '#f5a9b8'
-  return 'var(--text)'
-}
 
 const MAX_SECONDS = 30
 type RecordState = 'idle' | 'recording' | 'stopped'
@@ -202,7 +193,6 @@ export class PhrasesView {
           this.isIdle = false
         }
         this.hzEl.textContent = `${Math.round(hz)} Hz`
-        this.hzEl.style.color = readoutColorForHz(hz)
         this.noteEl.textContent = hzToNoteName(hz)
         this.liveRegion.announce(`${Math.round(hz)} Hz`)
       }

@@ -15,11 +15,11 @@ describe('VOICE_RANGES', () => {
 })
 
 describe('getRangesForHz', () => {
-  it('110 Hz → plage masculine', () => {
-    expect(getRangesForHz(110).map(r => r.id)).toContain('masculine')
+  it('110 Hz → plage grave', () => {
+    expect(getRangesForHz(110).map(r => r.id)).toContain('low')
   })
-  it('220 Hz → plage féminine', () => {
-    expect(getRangesForHz(220).map(r => r.id)).toContain('feminine')
+  it('220 Hz → plage médium', () => {
+    expect(getRangesForHz(220).map(r => r.id)).toContain('mid')
   })
   it('1 Hz (hors plage) → tableau vide', () => {
     expect(getRangesForHz(1)).toHaveLength(0)

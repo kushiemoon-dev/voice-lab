@@ -1,5 +1,5 @@
 export interface VoiceRange {
-  readonly id: 'masculine' | 'feminine' | 'nonbinary'
+  readonly id: 'low' | 'mid' | 'high'
   readonly label: string
   readonly minHz: number
   readonly maxHz: number
@@ -10,9 +10,9 @@ export const MIN_DISPLAY_HZ = 60
 export const MAX_DISPLAY_HZ = 500
 
 export const VOICE_RANGES: readonly VoiceRange[] = [
-  { id: 'masculine', label: 'Voix masculine',          minHz: 85,  maxHz: 180, color: 'rgba(91, 206, 250, 0.18)' },
-  { id: 'nonbinary', label: 'Non-binaire / androgyne', minHz: 145, maxHz: 215, color: 'rgba(255, 255, 255, 0.10)' },
-  { id: 'feminine',  label: 'Voix féminine',           minHz: 165, maxHz: 255, color: 'rgba(245, 169, 184, 0.18)' },
+  { id: 'low',  label: 'Graves',  minHz: 60,  maxHz: 150, color: 'rgba(148, 163, 184, 0.10)' },
+  { id: 'mid',  label: 'Médiums', minHz: 150, maxHz: 250, color: 'rgba(148, 163, 184, 0.14)' },
+  { id: 'high', label: 'Aigus',   minHz: 250, maxHz: 500, color: 'rgba(148, 163, 184, 0.10)' },
 ]
 
 export const getRangesForHz = (hz: number): readonly VoiceRange[] =>

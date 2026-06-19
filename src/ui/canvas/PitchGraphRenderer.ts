@@ -2,6 +2,7 @@ import { setupHiDpiCanvas, clearCanvas } from './canvasUtils'
 import { pitchToY, timeToX } from './scales'
 import { VOICE_RANGES } from '../../domain/voiceRanges'
 import { hzToNoteName } from '../../domain/noteFrequencies'
+import { t } from '../../i18n/strings'
 
 const BG_COLOR = '#0e1116'
 const PITCH_COLOR = '#ffffff'
@@ -39,14 +40,6 @@ export class PitchGraphRenderer {
     this.draw()
   }
 
-  private rangeColorForHz(hz: number): string {
-    const range = VOICE_RANGES.find(r => hz >= r.minHz && hz <= r.maxHz)
-    if (!range) return 'rgba(255,255,255,0.6)'
-    if (range.id === 'masculine') return 'rgba(91, 206, 250, 0.6)'
-    if (range.id === 'feminine')  return 'rgba(245, 169, 184, 0.6)'
-    return 'rgba(255, 255, 255, 0.6)'
-  }
-
   private draw(): void {
     const { ctx2d: ctx, width: W, height: H, history } = this
     const innerW = W - PAD_LEFT - PAD_RIGHT
@@ -57,14 +50,12 @@ export class PitchGraphRenderer {
     ctx.font = '10px system-ui, sans-serif'
     for (const hz of GRID_HZ) {
       const y = pitchToY(hz, H)
-      ctx.strokeStyle = 'rgba(240, 246, 252, 0.20)'
+      ctx.strokeStyle = 'rgba(240, 246, 252, 0.10)'
       ctx.lineWidth = 1
-      ctx.setLineDash([4, 6])
       ctx.beginPath()
       ctx.moveTo(PAD_LEFT, y)
       ctx.lineTo(W - PAD_RIGHT, y)
       ctx.stroke()
-      ctx.setLineDash([])
 
       // Labels Hz : right-aligné dans la gouttière gauche
       ctx.fillStyle = 'rgba(240, 246, 252, 0.45)'
@@ -104,19 +95,17 @@ export class PitchGraphRenderer {
     if (this.targetHz !== null) {
       const yTarget = pitchToY(this.targetHz, H)
       ctx.save()
-      ctx.strokeStyle = 'rgba(245, 169, 184, 0.7)'
+      ctx.strokeStyle = 'rgba(240, 246, 252, 0.5)'
       ctx.lineWidth = 1.5
-      ctx.setLineDash([8, 5])
       ctx.beginPath()
       ctx.moveTo(PAD_LEFT, yTarget)
       ctx.lineTo(W - PAD_RIGHT, yTarget)
       ctx.stroke()
-      ctx.setLineDash([])
 
-      ctx.fillStyle = 'rgba(245, 169, 184, 0.9)'
+      ctx.fillStyle = LABEL_COLOR
       ctx.font = 'bold 11px system-ui, sans-serif'
       ctx.textAlign = 'left'
-      ctx.fillText(`Cible : ${this.targetHz} Hz (${hzToNoteName(this.targetHz)})`, PAD_LEFT + 6, yTarget - 5)
+      ctx.fillText(`${t('pitch.target')} ${this.targetHz} Hz (${hzToNoteName(this.targetHz)})`, PAD_LEFT + 6, yTarget - 5)
       ctx.restore()
     }
 
@@ -155,23 +144,22 @@ export class PitchGraphRenderer {
     ctx.lineWidth = 1.5
     ctx.stroke()
 
-    // 5. Point courant + halo coloré (toujours au bord droit)
+    // 5. Point courant + halo (toujours au bord droit)
     const last = history.at(-1)
     if (last !== null && last !== undefined && last > 0) {
       const x = PAD_LEFT + innerW
       const y = pitchToY(last, H)
-      const haloColor = this.rangeColorForHz(last)
 
       // Halo externe
       ctx.beginPath()
       ctx.arc(x, y, 10, 0, Math.PI * 2)
-      ctx.fillStyle = haloColor.replace(/[\d.]+\)$/, '0.25)')
+      ctx.fillStyle = 'rgba(240, 246, 252, 0.25)'
       ctx.fill()
 
       // Halo intermédiaire
       ctx.beginPath()
       ctx.arc(x, y, 6, 0, Math.PI * 2)
-      ctx.fillStyle = haloColor.replace(/[\d.]+\)$/, '0.45)')
+      ctx.fillStyle = 'rgba(240, 246, 252, 0.45)'
       ctx.fill()
 
       // Point central
