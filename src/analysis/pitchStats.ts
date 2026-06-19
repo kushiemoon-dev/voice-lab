@@ -1,4 +1,5 @@
 import { VOICE_RANGES } from '../domain/voiceRanges'
+import { hzToMidi } from '../lib/math'
 
 export interface PitchStats {
   readonly count: number
@@ -6,6 +7,7 @@ export interface PitchStats {
   readonly maxHz: number | null
   readonly meanHz: number | null
   readonly rangeHz: number | null
+  readonly f0RangeSemitones: number | null
   readonly targetPct: number | null
   readonly dominantRange: string | null
 }
@@ -45,7 +47,7 @@ export class PitchStatsAccumulator {
 
   getStats(): PitchStats {
     if (this.count === 0) {
-      return { count: 0, minHz: null, maxHz: null, meanHz: null, rangeHz: null, targetPct: null, dominantRange: null }
+      return { count: 0, minHz: null, maxHz: null, meanHz: null, rangeHz: null, f0RangeSemitones: null, targetPct: null, dominantRange: null }
     }
 
     const targetPct = (this.targetMin !== null && this.targetMax !== null)
@@ -58,12 +60,15 @@ export class PitchStatsAccumulator {
       if (cnt > best) { best = cnt; dominantRange = label }
     }
 
+    const f0RangeSemitones = Math.round(hzToMidi(this.max) - hzToMidi(this.min))
+
     return {
       count: this.count,
       minHz: Math.round(this.min),
       maxHz: Math.round(this.max),
       meanHz: Math.round(this.sum / this.count),
       rangeHz: Math.round(this.max - this.min),
+      f0RangeSemitones,
       targetPct,
       dominantRange,
     }

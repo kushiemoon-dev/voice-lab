@@ -177,6 +177,22 @@ const en = {
 
   // Record export filename
   'record.exportFilename': 'voice-recording.wav',
+
+  // Intonation (PhrasesView)
+  'intonation.rangeLabel': 'Intonation range',
+  'intonation.semitones': 'st',
+  'intonation.flat': 'fairly flat',
+  'intonation.melodic': 'melodic',
+  'intonation.varied': 'very varied',
+  'intonation.context': 'No ideal value — context and emotion shape intonation.',
+  'intonation.waiting': 'Speak to measure intonation',
+
+  // Volume (PitchView)
+  'volume.level.verysoft': 'Very soft',
+  'volume.level.soft': 'Soft',
+  'volume.level.moderate': 'Moderate',
+  'volume.level.loud': 'Loud',
+  'volume.level.veryloud': 'Very loud',
 } as const
 
 const fr: Record<keyof typeof en, string> = {
@@ -354,6 +370,22 @@ const fr: Record<keyof typeof en, string> = {
 
   // Record export filename
   'record.exportFilename': 'voix-enregistrement.wav',
+
+  // Intonation (PhrasesView)
+  'intonation.rangeLabel': "Étendue d'intonation",
+  'intonation.semitones': 'st',
+  'intonation.flat': 'plutôt plate',
+  'intonation.melodic': 'mélodieuse',
+  'intonation.varied': 'très variée',
+  'intonation.context': "Pas de valeur idéale — le contexte et l'émotion font tout.",
+  'intonation.waiting': "Parlez pour mesurer l'intonation",
+
+  // Volume (PitchView)
+  'volume.level.verysoft': 'Très douce',
+  'volume.level.soft': 'Douce',
+  'volume.level.moderate': 'Modérée',
+  'volume.level.loud': 'Forte',
+  'volume.level.veryloud': 'Très forte',
 }
 
 export type StringKey = keyof typeof en
