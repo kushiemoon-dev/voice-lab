@@ -10,6 +10,15 @@ import type { AudioEngine } from '../../audio/AudioEngine'
 import { createResizeObserver } from '../canvas/canvasUtils'
 import { createSelect } from '../components/Select'
 import { t } from '../../i18n/strings'
+import type { StringKey } from '../../i18n/strings'
+
+function volLevelKey(vol: number): StringKey {
+  if (vol < 0.15) return 'volume.level.verysoft'
+  if (vol < 0.35) return 'volume.level.soft'
+  if (vol < 0.65) return 'volume.level.moderate'
+  if (vol < 0.82) return 'volume.level.loud'
+  return 'volume.level.veryloud'
+}
 
 export class PitchView {
   private readonly root: HTMLElement
@@ -22,6 +31,7 @@ export class PitchView {
   private readonly rmsSmoothed = new RmsSmoothed()
   private lastSampleAt = 0
   private readonly meter = new Meter(t('pitch.volume'))
+  private readonly volFeedbackEl: HTMLElement
   // Readout live
   private readonly readoutEl: HTMLElement
   private readonly hzEl: HTMLElement
@@ -77,9 +87,13 @@ export class PitchView {
     )
 
     // Volume
+    this.volFeedbackEl = el('span', {
+      style: 'color: var(--text-muted); font-size: 0.8rem; margin-top: var(--space-1); display: block;',
+    })
     const volumeBlock = el('div', { class: 'volume-block' },
       el('div', { class: 'volume-block__label' }, t('pitch.volume')),
       this.meter.element,
+      this.volFeedbackEl,
     )
 
     this.root = el('div', { class: 'view-card', style: 'padding: var(--space-6);' },
@@ -109,6 +123,7 @@ export class PitchView {
       const hz = this.smoother.push(raw.hz ?? 0, raw.clarity)
       const vol = this.rmsSmoothed.update(frame)
       this.meter.update(vol)
+      this.volFeedbackEl.textContent = t(volLevelKey(vol))
 
       // Throttle : un point toutes les ~33 ms seulement
       const now = performance.now()
