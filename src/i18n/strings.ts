@@ -49,13 +49,13 @@ const en = {
   // Pitch view
   'pitch.title': 'Pitch',
   'pitch.idle': 'Speak to see your pitch',
-  'pitch.target': 'Target:',
-  'pitch.targetNone': 'No target',
-  'pitch.band.masculine': 'Masculine voice (85–180 Hz)',
-  'pitch.band.nonbinary': 'Non-binary (145–215 Hz)',
-  'pitch.band.feminine': 'Feminine voice (165–255 Hz)',
+  'pitch.target': 'Reference:',
+  'pitch.targetNone': 'None',
+  'pitch.band.low': 'Low (60–150 Hz)',
+  'pitch.band.mid': 'Mid (150–250 Hz)',
+  'pitch.band.high': 'High (250–500 Hz)',
   'pitch.volume': 'Volume',
-  'pitch.targetLabel': 'Target frequency',
+  'pitch.targetLabel': 'Frequency reference',
 
   // Record view
   'record.privacy': 'Nothing leaves your device. The recording is held in RAM only.',
@@ -122,7 +122,7 @@ const en = {
 
   // Phrases view
   'phrases.title': 'Reading phrases',
-  'phrases.subtitle': 'Read these phrases aloud, maintaining your target pitch.',
+  'phrases.subtitle': 'Read these phrases aloud and observe your intonation curve.',
   'phrases.theme': 'Theme',
   'phrases.prev': '← Previous',
   'phrases.next': 'Next →',
@@ -226,13 +226,13 @@ const fr: Record<keyof typeof en, string> = {
   // Pitch view
   'pitch.title': 'Fréquence',
   'pitch.idle': 'Parlez pour voir votre fréquence',
-  'pitch.target': 'Cible :',
-  'pitch.targetNone': 'Pas de cible',
-  'pitch.band.masculine': 'Voix masculine (85–180 Hz)',
-  'pitch.band.nonbinary': 'Non-binaire (145–215 Hz)',
-  'pitch.band.feminine': 'Voix féminine (165–255 Hz)',
+  'pitch.target': 'Repère :',
+  'pitch.targetNone': 'Aucun',
+  'pitch.band.low': 'Graves (60–150 Hz)',
+  'pitch.band.mid': 'Médiums (150–250 Hz)',
+  'pitch.band.high': 'Aigus (250–500 Hz)',
   'pitch.volume': 'Volume',
-  'pitch.targetLabel': 'Fréquence cible',
+  'pitch.targetLabel': 'Repère de fréquence',
 
   // Record view
   'record.privacy': "Rien ne quitte votre appareil. L'enregistrement est conservé uniquement en RAM.",
@@ -299,7 +299,7 @@ const fr: Record<keyof typeof en, string> = {
 
   // Phrases view
   'phrases.title': 'Phrases à lire',
-  'phrases.subtitle': 'Lisez ces phrases à voix haute en maintenant votre hauteur cible.',
+  'phrases.subtitle': 'Lisez ces phrases à voix haute et observez la courbe de votre intonation.',
   'phrases.theme': 'Thème',
   'phrases.prev': '← Précédente',
   'phrases.next': 'Suivante →',

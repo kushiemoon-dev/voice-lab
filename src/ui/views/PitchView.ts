@@ -6,20 +6,10 @@ import { MedianSmoother } from '../../audio/pitch/pitchSmoothing'
 import { RmsSmoothed } from '../../audio/volume/rms'
 import { Meter } from '../components/Meter'
 import { hzToNoteName } from '../../domain/noteFrequencies'
-import { VOICE_RANGES } from '../../domain/voiceRanges'
 import type { AudioEngine } from '../../audio/AudioEngine'
 import { createResizeObserver } from '../canvas/canvasUtils'
 import { createSelect } from '../components/Select'
 import { t } from '../../i18n/strings'
-
-// Couleur de la plage vocale pour le readout live
-function readoutColorForHz(hz: number): string {
-  const range = VOICE_RANGES.find(r => hz >= r.minHz && hz <= r.maxHz)
-  if (!range) return 'var(--text)'
-  if (range.id === 'masculine') return '#5bcefa'
-  if (range.id === 'feminine')  return '#f5a9b8'
-  return 'var(--text)'
-}
 
 export class PitchView {
   private readonly root: HTMLElement
@@ -76,14 +66,14 @@ export class PitchView {
     // Légende
     const legend = el('div', { class: 'legend' },
       el('span', { class: 'legend__item' },
-        el('span', { class: 'legend__swatch', style: 'background: #5bcefa;' }),
-        t('pitch.band.masculine')),
+        el('span', { class: 'legend__swatch', style: 'background: rgba(148, 163, 184, 0.4);' }),
+        t('pitch.band.low')),
       el('span', { class: 'legend__item' },
-        el('span', { class: 'legend__swatch', style: 'background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.3);' }),
-        t('pitch.band.nonbinary')),
+        el('span', { class: 'legend__swatch', style: 'background: rgba(148, 163, 184, 0.55);' }),
+        t('pitch.band.mid')),
       el('span', { class: 'legend__item' },
-        el('span', { class: 'legend__swatch', style: 'background: #f5a9b8;' }),
-        t('pitch.band.feminine')),
+        el('span', { class: 'legend__swatch', style: 'background: rgba(148, 163, 184, 0.4);' }),
+        t('pitch.band.high')),
     )
 
     // Volume
@@ -133,7 +123,6 @@ export class PitchView {
           this.isIdle = false
         }
         this.hzEl.textContent = `${Math.round(hz)} Hz`
-        this.hzEl.style.color = readoutColorForHz(hz)
         this.noteEl.textContent = hzToNoteName(hz)
         this.liveRegion.announce(`${Math.round(hz)} Hz, ${hzToNoteName(hz)}`)
       }

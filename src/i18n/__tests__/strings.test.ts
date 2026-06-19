@@ -15,7 +15,7 @@ const allKeys: StringKey[] = [
   'header.home',
   'footer.privacy', 'footer.disclaimer', 'footer.openSource',
   'pitch.title', 'pitch.idle', 'pitch.target', 'pitch.targetNone',
-  'pitch.band.masculine', 'pitch.band.nonbinary', 'pitch.band.feminine',
+  'pitch.band.low', 'pitch.band.mid', 'pitch.band.high',
   'pitch.volume', 'pitch.targetLabel',
   'record.privacy', 'record.listen', 'record.clear',
   'record.status.ready', 'record.title', 'record.status.initializing',
