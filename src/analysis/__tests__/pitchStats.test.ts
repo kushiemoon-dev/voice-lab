@@ -46,11 +46,11 @@ describe('PitchStatsAccumulator', () => {
 
   it('dominantRange identifie la plage la plus fréquente', () => {
     const acc = new PitchStatsAccumulator()
-    // 165-255 Hz = plage féminine
+    // 150-250 Hz = plage médium (la plus fréquente ici)
     acc.push(180)
     acc.push(200)
     acc.push(220)
-    // 85-180 Hz = plage masculine (chevauchement mais moins de valeurs féminines uniques)
+    // 60-150 Hz = plage grave
     acc.push(100)
     const s = acc.getStats()
     expect(s.dominantRange).toBeTruthy()
