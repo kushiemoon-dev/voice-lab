@@ -193,6 +193,20 @@ const en = {
   'volume.level.moderate': 'Moderate',
   'volume.level.loud': 'Loud',
   'volume.level.veryloud': 'Very loud',
+
+  // Resonance / Formants (LaboView)
+  'labo.tab.resonance': 'Resonance',
+  'resonance.description': 'Experimental — most reliable on sustained vowels.',
+  'resonance.holdVowel': 'Hold a vowel (A, E, I, O, U) for a stable reading.',
+  'resonance.aperture': 'Mouth opening',
+  'resonance.brightness': 'Resonance',
+  'resonance.open': 'open',
+  'resonance.mid': 'half-open',
+  'resonance.closed': 'closed',
+  'resonance.bright': 'bright',
+  'resonance.neutral': 'neutral',
+  'resonance.dark': 'dark',
+  'resonance.waiting': 'Hold a vowel…',
 } as const
 
 const fr: Record<keyof typeof en, string> = {
@@ -386,6 +400,20 @@ const fr: Record<keyof typeof en, string> = {
   'volume.level.moderate': 'Modérée',
   'volume.level.loud': 'Forte',
   'volume.level.veryloud': 'Très forte',
+
+  // Resonance / Formants (LaboView)
+  'labo.tab.resonance': 'Résonance',
+  'resonance.description': 'Prototype exploratoire — plus fiable sur les voyelles tenues.',
+  'resonance.holdVowel': 'Maintenez une voyelle (A, E, I, O, U) pour une lecture stable.',
+  'resonance.aperture': 'Ouverture de bouche',
+  'resonance.brightness': 'Résonance',
+  'resonance.open': 'ouverte',
+  'resonance.mid': 'mi-ouverte',
+  'resonance.closed': 'fermée',
+  'resonance.bright': 'clair',
+  'resonance.neutral': 'neutre',
+  'resonance.dark': 'sombre',
+  'resonance.waiting': 'Maintenez une voyelle…',
 }
 
 export type StringKey = keyof typeof en

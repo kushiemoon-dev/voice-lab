@@ -4,10 +4,11 @@ import { SpectrogramView } from './SpectrogramView'
 import { StatsView } from './StatsView'
 import { HarmonicsView } from './HarmonicsView'
 import { VoiceQualityView } from './VoiceQualityView'
+import { ResonanceView } from './ResonanceView'
 import type { AudioEngine } from '../../audio/AudioEngine'
 import { t } from '../../i18n/strings'
 
-type LaboTab = 'spectrum' | 'spectrogram' | 'harmonics' | 'stats' | 'quality'
+type LaboTab = 'spectrum' | 'spectrogram' | 'harmonics' | 'stats' | 'quality' | 'resonance'
 
 export class LaboView {
   private readonly root: HTMLElement
@@ -23,6 +24,7 @@ export class LaboView {
       { id: 'harmonics',   label: t('labo.tab.harmonics')   },
       { id: 'stats',       label: t('labo.tab.stats')       },
       { id: 'quality',     label: t('labo.tab.quality')     },
+      { id: 'resonance',   label: t('labo.tab.resonance')   },
     ]
 
     this.contentZone = el('div', {
@@ -129,8 +131,15 @@ export class LaboView {
       return view.element
     }
 
-    // quality
-    const view = new VoiceQualityView(this.engine)
+    if (tabId === 'quality') {
+      const view = new VoiceQualityView(this.engine)
+      view.mount()
+      this.currentSubView = view
+      return view.element
+    }
+
+    // resonance
+    const view = new ResonanceView(this.engine)
     view.mount()
     this.currentSubView = view
     return view.element
