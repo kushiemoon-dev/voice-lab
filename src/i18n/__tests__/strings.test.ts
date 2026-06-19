@@ -47,6 +47,10 @@ const allKeys: StringKey[] = [
   'intonation.melodic', 'intonation.varied', 'intonation.context', 'intonation.waiting',
   'volume.level.verysoft', 'volume.level.soft', 'volume.level.moderate',
   'volume.level.loud', 'volume.level.veryloud',
+  'labo.tab.resonance',
+  'resonance.description', 'resonance.holdVowel', 'resonance.aperture', 'resonance.brightness',
+  'resonance.open', 'resonance.mid', 'resonance.closed',
+  'resonance.bright', 'resonance.neutral', 'resonance.dark', 'resonance.waiting',
 ]
 
 describe('strings catalog', () => {
