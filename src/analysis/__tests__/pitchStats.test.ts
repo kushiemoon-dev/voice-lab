@@ -56,6 +56,27 @@ describe('PitchStatsAccumulator', () => {
     expect(s.dominantRange).toBeTruthy()
   })
 
+  it('f0RangeSemitones nul à vide', () => {
+    const acc = new PitchStatsAccumulator()
+    expect(acc.getStats().f0RangeSemitones).toBeNull()
+  })
+
+  it('f0RangeSemitones ~ 12 demi-tons pour une octave', () => {
+    const acc = new PitchStatsAccumulator()
+    acc.push(220)   // A3
+    acc.push(440)   // A4 — exactement 12 demi-tons plus haut
+    const s = acc.getStats()
+    expect(s.f0RangeSemitones).toBe(12)
+  })
+
+  it('f0RangeSemitones ~ 0 pour deux fréquences identiques', () => {
+    const acc = new PitchStatsAccumulator()
+    acc.push(300)
+    acc.push(300)
+    const s = acc.getStats()
+    expect(s.f0RangeSemitones).toBe(0)
+  })
+
   it('reset remet tout à zéro', () => {
     const acc = new PitchStatsAccumulator()
     acc.push(200)
