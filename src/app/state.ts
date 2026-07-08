@@ -1,6 +1,6 @@
 import type { MicError } from '../lib/errors'
 
-export type MicStatus = 'idle' | 'requesting' | 'granted' | 'error'
+type MicStatus = 'idle' | 'requesting' | 'granted' | 'error'
 export type ActiveMode = 'pitch' | 'tones' | 'phrases' | 'record' | 'labo'
 export type Screen = 'landing' | 'tool'
 

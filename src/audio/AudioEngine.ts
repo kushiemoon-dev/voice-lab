@@ -3,8 +3,8 @@ import type { MicError } from '../lib/errors'
 import { ok, err } from '../lib/result'
 import { mapDomException } from '../lib/errors'
 
-export type FrameCallback = (frame: Float32Array) => void
-export type FreqCallback = (freqData: Float32Array) => void
+type FrameCallback = (frame: Float32Array) => void
+type FreqCallback = (freqData: Float32Array) => void
 
 export interface AudioEngine {
   start(stream: MediaStream): Promise<Result<void, MicError>>

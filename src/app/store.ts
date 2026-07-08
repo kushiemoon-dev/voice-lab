@@ -1,4 +1,4 @@
-export type Subscriber<S> = (state: Readonly<S>) => void
+type Subscriber<S> = (state: Readonly<S>) => void
 
 export interface Store<S extends object> {
   getState: () => Readonly<S>
