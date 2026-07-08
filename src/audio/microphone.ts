@@ -19,7 +19,3 @@ export const requestMicrophone = async (): Promise<Result<MediaStream, MicError>
     return err(mapDomException(e))
   }
 }
-
-export const releaseMicrophone = (stream: MediaStream): void => {
-  stream.getTracks().forEach(t => t.stop())
-}
