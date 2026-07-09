@@ -4,7 +4,7 @@
 
 [![Tests](https://github.com/kushiemoon-dev/voice-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/kushiemoon-dev/voice-lab/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **[voice-lab.kushie.dev](https://voice-lab.kushie.dev)** — No account. No server. Nothing leaves your device.
@@ -47,7 +47,7 @@ Available in **English and French** — toggleable at any time, persisted to loc
 | Layer | Choice | Why |
 |-------|--------|-----|
 | Language | TypeScript 5 (strict) | Type safety across all audio/DSP code |
-| Bundler | Vite 5 | Fast dev server, ES module output |
+| Bundler | Vite 6 | Fast dev server, ES module output |
 | Audio | Web Audio API | `getUserMedia` → `AnalyserNode` → `AudioWorklet` |
 | Pitch | [pitchy](https://github.com/ianprime0509/pitchy) | MPM algorithm, only runtime dependency |
 | Tests | Vitest + happy-dom | Fast, native ESM, no transpilation |
