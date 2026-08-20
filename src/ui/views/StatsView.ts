@@ -24,25 +24,24 @@ export class StatsView {
 
   constructor(private readonly engine: AudioEngine) {
     const makeCard = (label: string, valueEl: HTMLElement): HTMLElement =>
-      el('div', { class: 'stat-card' },
-        el('div', { class: 'stat-card__label' }, label),
-        valueEl,
-      )
+      el('div', { class: 'stat-card' }, el('div', { class: 'stat-card__label' }, label), valueEl)
 
-    this.valMin      = el('div', { class: 'stat-card__value' }, '—')
-    this.valMax      = el('div', { class: 'stat-card__value' }, '—')
-    this.valMean     = el('div', { class: 'stat-card__value' }, '—')
-    this.valRange    = el('div', { class: 'stat-card__value' }, '—')
+    this.valMin = el('div', { class: 'stat-card__value' }, '—')
+    this.valMax = el('div', { class: 'stat-card__value' }, '—')
+    this.valMean = el('div', { class: 'stat-card__value' }, '—')
+    this.valRange = el('div', { class: 'stat-card__value' }, '—')
     this.valDominant = el('div', { class: 'stat-card__value' }, '—')
-    this.valCount    = el('div', { class: 'stat-card__value' }, '0')
+    this.valCount = el('div', { class: 'stat-card__value' }, '0')
 
-    const grid = el('div', { class: 'stats-grid' },
-      makeCard(t('stats.min'),      this.valMin),
-      makeCard(t('stats.max'),      this.valMax),
-      makeCard(t('stats.mean'),     this.valMean),
-      makeCard(t('stats.range'),    this.valRange),
+    const grid = el(
+      'div',
+      { class: 'stats-grid' },
+      makeCard(t('stats.min'), this.valMin),
+      makeCard(t('stats.max'), this.valMax),
+      makeCard(t('stats.mean'), this.valMean),
+      makeCard(t('stats.range'), this.valRange),
       makeCard(t('stats.dominant'), this.valDominant),
-      makeCard(t('stats.frames'),   this.valCount),
+      makeCard(t('stats.frames'), this.valCount)
     )
 
     const resetBtn = createButton(t('stats.reset'), () => {
@@ -51,27 +50,35 @@ export class StatsView {
       this.renderStats()
     })
 
-    this.root = el('div', {},
+    this.root = el(
+      'div',
+      {},
       el('h2', { style: 'font-size:1rem;margin-bottom:var(--space-2);' }, t('stats.title')),
-      el('p', { class: 'description', style: 'font-size:0.875rem;color:var(--text-muted);margin-bottom:var(--space-2);' },
-        t('stats.description')),
+      el(
+        'p',
+        {
+          class: 'description',
+          style: 'font-size:0.875rem;color:var(--text-muted);margin-bottom:var(--space-2);',
+        },
+        t('stats.description')
+      ),
       grid,
-      resetBtn,
+      resetBtn
     )
   }
 
   private renderStats(): void {
     const s = this.accumulator.getStats()
-    this.valMin.textContent      = s.minHz  !== null ? `${s.minHz} Hz`  : '—'
-    this.valMax.textContent      = s.maxHz  !== null ? `${s.maxHz} Hz`  : '—'
-    this.valMean.textContent     = s.meanHz !== null ? `${s.meanHz} Hz` : '—'
-    this.valRange.textContent    = s.rangeHz !== null ? `${s.rangeHz} Hz` : '—'
+    this.valMin.textContent = s.minHz !== null ? `${s.minHz} Hz` : '—'
+    this.valMax.textContent = s.maxHz !== null ? `${s.maxHz} Hz` : '—'
+    this.valMean.textContent = s.meanHz !== null ? `${s.meanHz} Hz` : '—'
+    this.valRange.textContent = s.rangeHz !== null ? `${s.rangeHz} Hz` : '—'
     this.valDominant.textContent = s.dominantRange ?? '—'
-    this.valCount.textContent    = `${s.count}`
+    this.valCount.textContent = `${s.count}`
   }
 
   mount(): void {
-    this.unsubFrame = this.engine.onFrame(frame => {
+    this.unsubFrame = this.engine.onFrame((frame) => {
       const sr = this.engine.getSampleRate()
       const raw = this.estimator.estimate(frame, sr)
       const hz = this.smoother.push(raw.hz ?? 0, raw.clarity)
@@ -80,7 +87,9 @@ export class StatsView {
       }
     })
 
-    this.intervalId = setInterval(() => { this.renderStats() }, 2000)
+    this.intervalId = setInterval(() => {
+      this.renderStats()
+    }, 2000)
   }
 
   destroy(): void {
@@ -89,5 +98,7 @@ export class StatsView {
     this.smoother.reset()
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

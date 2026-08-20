@@ -19,12 +19,12 @@ export class LaboView {
   constructor(private readonly engine: AudioEngine) {
     // Construit à l'instanciation (pas au chargement du module) → reflète la langue courante
     const LABO_TABS: { id: LaboTab; label: string }[] = [
-      { id: 'spectrum',    label: t('labo.tab.spectrum')    },
+      { id: 'spectrum', label: t('labo.tab.spectrum') },
       { id: 'spectrogram', label: t('labo.tab.spectrogram') },
-      { id: 'harmonics',   label: t('labo.tab.harmonics')   },
-      { id: 'stats',       label: t('labo.tab.stats')       },
-      { id: 'quality',     label: t('labo.tab.quality')     },
-      { id: 'resonance',   label: t('labo.tab.resonance')   },
+      { id: 'harmonics', label: t('labo.tab.harmonics') },
+      { id: 'stats', label: t('labo.tab.stats') },
+      { id: 'quality', label: t('labo.tab.quality') },
+      { id: 'resonance', label: t('labo.tab.resonance') },
     ]
 
     this.contentZone = el('div', {
@@ -38,25 +38,35 @@ export class LaboView {
     const nav = el('div', {
       role: 'tablist',
       'aria-label': t('labo.navLabel'),
-      style: 'display:flex;gap:var(--space-2);flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:var(--space-2);',
+      style:
+        'display:flex;gap:var(--space-2);flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:var(--space-2);',
     })
 
     for (const tab of LABO_TABS) {
       const isFirst = tab.id === 'spectrum'
-      const btn = el('button', {
-        role: 'tab',
-        id: `labo-tab-${tab.id}`,
-        'aria-selected': isFirst ? 'true' : 'false',
-        'aria-controls': 'labo-panel',
-        tabindex: isFirst ? '0' : '-1',
-        style: 'padding:var(--space-2) var(--space-3);border:none;background:none;cursor:pointer;font-size:0.875rem;border-bottom:2px solid transparent;',
-      }, tab.label) as HTMLButtonElement
+      const btn = el(
+        'button',
+        {
+          role: 'tab',
+          id: `labo-tab-${tab.id}`,
+          'aria-selected': isFirst ? 'true' : 'false',
+          'aria-controls': 'labo-panel',
+          tabindex: isFirst ? '0' : '-1',
+          style:
+            'padding:var(--space-2) var(--space-3);border:none;background:none;cursor:pointer;font-size:0.875rem;border-bottom:2px solid transparent;',
+        },
+        tab.label
+      ) as HTMLButtonElement
 
       btn.style.color = isFirst ? 'var(--trans-blue)' : 'var(--text-muted)'
       if (isFirst) btn.style.borderBottomColor = 'var(--trans-blue)'
 
       btn.addEventListener('click', () => {
-        this.switchTab(tab.id, tabButtons, LABO_TABS.map(t => t.id))
+        this.switchTab(
+          tab.id,
+          tabButtons,
+          LABO_TABS.map((t) => t.id)
+        )
       })
       btn.addEventListener('keydown', (e: KeyboardEvent) => {
         this.handleArrowKey(e, tabButtons)
@@ -65,21 +75,23 @@ export class LaboView {
       nav.append(btn)
     }
 
-    this.root = el('div', { class: 'view-card', style: 'padding:var(--space-6);' },
+    this.root = el(
+      'div',
+      { class: 'view-card', style: 'padding:var(--space-6);' },
       el('h1', { style: 'font-size:1rem;margin-bottom:var(--space-4);' }, t('labo.title')),
       nav,
-      this.contentZone,
+      this.contentZone
     )
   }
 
   private handleArrowKey(e: KeyboardEvent, buttons: HTMLButtonElement[]): void {
-    const idx = buttons.findIndex(b => b === e.currentTarget)
+    const idx = buttons.findIndex((b) => b === e.currentTarget)
     if (idx < 0) return
     let next = idx
     if (e.key === 'ArrowRight') next = (idx + 1) % buttons.length
-    if (e.key === 'ArrowLeft')  next = (idx - 1 + buttons.length) % buttons.length
+    if (e.key === 'ArrowLeft') next = (idx - 1 + buttons.length) % buttons.length
     if (e.key === 'Home') next = 0
-    if (e.key === 'End')  next = buttons.length - 1
+    if (e.key === 'End') next = buttons.length - 1
     if (['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
       e.preventDefault()
       buttons[next]?.focus()
@@ -154,5 +166,7 @@ export class LaboView {
     this.currentSubView?.destroy?.()
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

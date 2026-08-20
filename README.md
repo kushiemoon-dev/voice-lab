@@ -15,16 +15,16 @@
 
 Voice Lab gives you real-time audio feedback to help explore, train, and understand your voice. It runs entirely in your browser using the Web Audio API — your microphone data never touches a server.
 
-| Tool | What you get |
-|------|-------------|
-| **Pitch** | Live pitch graph with band indicators for masculine, non-binary, and feminine ranges; scrolling history; target line |
-| **Tones** | Reference notes and scales across your vocal range — useful for ear training |
-| **Phrases** | Practice sentences across 9 themes — with live pitch graph and recording so you can hear yourself back |
-| **Record** | Record, replay, and export as WAV — locally, nothing is sent anywhere |
-| **Lab — Spectrogram** | Time × frequency heatmap scrolling in real time |
-| **Lab — Harmonics** | FFT harmonic series visualisation |
-| **Lab — Voice Quality** | Jitter, shimmer, and HNR (harmonics-to-noise ratio) with qualitative interpretation |
-| **Lab — Statistics** | Session pitch stats: min, max, mean, range, dominant range, target % |
+| Tool                    | What you get                                                                                                         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Pitch**               | Live pitch graph with band indicators for masculine, non-binary, and feminine ranges; scrolling history; target line |
+| **Tones**               | Reference notes and scales across your vocal range — useful for ear training                                         |
+| **Phrases**             | Practice sentences across 9 themes — with live pitch graph and recording so you can hear yourself back               |
+| **Record**              | Record, replay, and export as WAV — locally, nothing is sent anywhere                                                |
+| **Lab — Spectrogram**   | Time × frequency heatmap scrolling in real time                                                                      |
+| **Lab — Harmonics**     | FFT harmonic series visualisation                                                                                    |
+| **Lab — Voice Quality** | Jitter, shimmer, and HNR (harmonics-to-noise ratio) with qualitative interpretation                                  |
+| **Lab — Statistics**    | Session pitch stats: min, max, mean, range, dominant range, target %                                                 |
 
 Available in **English and French** — toggleable at any time, persisted to localStorage.
 
@@ -44,14 +44,14 @@ Available in **English and French** — toggleable at any time, persisted to loc
 
 ## Tech stack
 
-| Layer | Choice | Why |
-|-------|--------|-----|
-| Language | TypeScript 5 (strict) | Type safety across all audio/DSP code |
-| Bundler | Vite 6 | Fast dev server, ES module output |
-| Audio | Web Audio API | `getUserMedia` → `AnalyserNode` → `AudioWorklet` |
-| Pitch | [pitchy](https://github.com/ianprime0509/pitchy) | MPM algorithm, only runtime dependency |
-| Tests | Vitest + happy-dom | Fast, native ESM, no transpilation |
-| PWA | vite-plugin-pwa + Workbox | Offline-capable, installable |
+| Layer    | Choice                                           | Why                                              |
+| -------- | ------------------------------------------------ | ------------------------------------------------ |
+| Language | TypeScript 5 (strict)                            | Type safety across all audio/DSP code            |
+| Bundler  | Vite 6                                           | Fast dev server, ES module output                |
+| Audio    | Web Audio API                                    | `getUserMedia` → `AnalyserNode` → `AudioWorklet` |
+| Pitch    | [pitchy](https://github.com/ianprime0509/pitchy) | MPM algorithm, only runtime dependency           |
+| Tests    | Vitest + happy-dom                               | Fast, native ESM, no transpilation               |
+| PWA      | vite-plugin-pwa + Workbox                        | Offline-capable, installable                     |
 
 No framework. No build-time server. One runtime dependency.
 

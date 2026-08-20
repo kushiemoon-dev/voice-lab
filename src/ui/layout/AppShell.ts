@@ -18,18 +18,22 @@ export class AppShell {
     this.homeBtn = el('button', { class: 'header__home' }, t('header.home')) as HTMLButtonElement
     this.homeBtn.addEventListener('click', () => navigate(store, 'landing'))
 
-    const langBtn = el('button', { class: 'lang-toggle', 'aria-label': t('a11y.switchLanguage') },
-      getLang() === 'en' ? 'FR' : 'EN',
+    const langBtn = el(
+      'button',
+      { class: 'lang-toggle', 'aria-label': t('a11y.switchLanguage') },
+      getLang() === 'en' ? 'FR' : 'EN'
     ) as HTMLButtonElement
     langBtn.addEventListener('click', () => {
       setLang(getLang() === 'en' ? 'fr' : 'en')
       location.reload()
     })
 
-    const header = el('header', { class: 'header' },
+    const header = el(
+      'header',
+      { class: 'header' },
       el('span', { class: 'header__title' }, `🎙 ${t('app.title')}`),
       this.homeBtn,
-      langBtn,
+      langBtn
     )
 
     const nav = el('nav', { 'aria-label': t('a11y.nav') })
@@ -40,24 +44,40 @@ export class AppShell {
       tabindex: '-1',
     })
 
-    const footer = el('footer', { role: 'contentinfo', class: 'footer' },
+    const footer = el(
+      'footer',
+      { role: 'contentinfo', class: 'footer' },
       el('p', {}, t('footer.privacy')),
       el('p', {}, t('footer.disclaimer')),
-      el('a', {
-        href: 'https://github.com/kushiemoon-dev/voice-lab',
-        class: 'footer__link',
-        target: '_blank',
-        rel: 'noopener noreferrer',
-      }, t('footer.openSource')),
+      el(
+        'a',
+        {
+          href: 'https://github.com/kushiemoon-dev/voice-lab',
+          class: 'footer__link',
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        },
+        t('footer.openSource')
+      )
     )
 
-    const skipLink = el('a', {
-      class: 'skip-link',
-      href: '#main-content',
-    }, t('a11y.skipToContent'))
+    const skipLink = el(
+      'a',
+      {
+        class: 'skip-link',
+        href: '#main-content',
+      },
+      t('a11y.skipToContent')
+    )
 
-    this.root = el('div', { class: 'app-shell app-shell--landing' },
-      skipLink, header, nav, this.contentZone, footer,
+    this.root = el(
+      'div',
+      { class: 'app-shell app-shell--landing' },
+      skipLink,
+      header,
+      nav,
+      this.contentZone,
+      footer
     )
 
     this.tabBar.mount(nav)
@@ -85,7 +105,9 @@ export class AppShell {
     }
   }
 
-  mount(parent: Element): void { parent.append(this.root) }
+  mount(parent: Element): void {
+    parent.append(this.root)
+  }
 
   setContent(child: Element): void {
     this.contentZone.replaceChildren(child)

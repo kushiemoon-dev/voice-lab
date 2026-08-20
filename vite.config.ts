@@ -7,9 +7,19 @@ let pendingWav: Buffer | null = null
 
 const wavDownloadPlugin = {
   name: 'wav-download',
-  configureServer(server: { middlewares: { use: (path: string, fn: (req: IncomingMessage, res: ServerResponse, next: () => void) => void) => void } }) {
+  configureServer(server: {
+    middlewares: {
+      use: (
+        path: string,
+        fn: (req: IncomingMessage, res: ServerResponse, next: () => void) => void
+      ) => void
+    }
+  }) {
     server.middlewares.use('/api/stage-wav', (req, res, next) => {
-      if (req.method !== 'POST') { next(); return }
+      if (req.method !== 'POST') {
+        next()
+        return
+      }
       const chunks: Buffer[] = []
       req.on('data', (chunk: Buffer) => chunks.push(chunk))
       req.on('end', () => {
@@ -19,7 +29,10 @@ const wavDownloadPlugin = {
       })
     })
     server.middlewares.use('/api/download-wav', (_req, res, next) => {
-      if (!pendingWav) { next(); return }
+      if (!pendingWav) {
+        next()
+        return
+      }
       const wav = pendingWav
       pendingWav = null
       res.writeHead(200, {

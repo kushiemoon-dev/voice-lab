@@ -33,7 +33,7 @@ export class SpectrumRenderer {
 
     const nyquist = this.sampleRate / 2
     const maxFreq = 8000
-    const maxBin = Math.floor(maxFreq / nyquist * this.freqBinCount)
+    const maxBin = Math.floor((maxFreq / nyquist) * this.freqBinCount)
     const usedBins = Math.min(maxBin, freqData.length)
 
     const barWidth = W / usedBins
@@ -46,7 +46,7 @@ export class SpectrumRenderer {
       const x = i * barWidth
       const t = i / usedBins
 
-      const r = Math.round(91  + (245 - 91)  * t)
+      const r = Math.round(91 + (245 - 91) * t)
       const g = Math.round(206 + (169 - 206) * t)
       const b = Math.round(250 + (184 - 250) * t)
       ctx.fillStyle = `rgb(${r},${g},${b})`

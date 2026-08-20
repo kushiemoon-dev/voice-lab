@@ -9,7 +9,7 @@ describe('MedianSmoother', () => {
 
   it('lisse les valeurs : retourne une médiane stable', () => {
     const s = new MedianSmoother(5, 0.85)
-    ;[220, 218, 222, 219, 221].forEach(hz => s.push(hz, 0.95))
+    ;[220, 218, 222, 219, 221].forEach((hz) => s.push(hz, 0.95))
     const last = s.push(220, 0.95)
     expect(last).not.toBeNull()
     expect(last!).toBeGreaterThan(215)

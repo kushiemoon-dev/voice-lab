@@ -7,7 +7,7 @@ describe('RingBuffer', () => {
     expect(rb.snapshot().length).toBe(0)
   })
 
-  it('push puis snapshot retourne les samples dans l\'ordre chronologique', () => {
+  it("push puis snapshot retourne les samples dans l'ordre chronologique", () => {
     const rb = new RingBuffer(10)
     rb.push(new Float32Array([1, 2, 3]))
     rb.push(new Float32Array([4, 5]))

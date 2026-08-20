@@ -8,7 +8,7 @@ function fakeFreqData(
   binCount: number,
   maxHarmonics: number,
   peakDb = -20,
-  noiseFloor = -90,
+  noiseFloor = -90
 ): Float32Array {
   const nyquist = sampleRate / 2
   const hzPerBin = nyquist / binCount
@@ -65,7 +65,7 @@ describe('extractHarmonics', () => {
     expect(harmonics.length).toBeLessThanOrEqual(3)
   })
 
-  it('s\'arrête à la fréquence de Nyquist', () => {
+  it("s'arrête à la fréquence de Nyquist", () => {
     const freqData = fakeFreqData(F0, SR, BINS, 100)
     const harmonics = extractHarmonics(freqData, F0, SR, BINS, 100)
     for (const h of harmonics) {

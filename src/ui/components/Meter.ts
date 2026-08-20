@@ -6,14 +6,18 @@ export class Meter {
 
   constructor(label = 'Volume') {
     this.fill = el('div', { class: 'meter__fill', style: 'width: 0%' })
-    this.root = el('div', {
-      class: 'meter',
-      role: 'meter',
-      'aria-label': label,
-      'aria-valuemin': '0',
-      'aria-valuemax': '100',
-      'aria-valuenow': '0',
-    }, this.fill)
+    this.root = el(
+      'div',
+      {
+        class: 'meter',
+        role: 'meter',
+        'aria-label': label,
+        'aria-valuemin': '0',
+        'aria-valuemax': '100',
+        'aria-valuenow': '0',
+      },
+      this.fill
+    )
   }
 
   update(normalized: number): void {
@@ -22,5 +26,7 @@ export class Meter {
     this.root.setAttribute('aria-valuenow', String(pct))
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

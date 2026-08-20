@@ -10,33 +10,41 @@ export class TabBar {
 
   constructor(private readonly store: Store<AppState>) {
     this.root = el('div', { class: 'tabbar', role: 'tablist', 'aria-label': t('a11y.modes') })
-    MODES.forEach(mode => this.root.append(this.buildTab(mode.id, mode.label)))
+    MODES.forEach((mode) => this.root.append(this.buildTab(mode.id, mode.label)))
   }
 
   private buildTab(id: ActiveMode, label: string): HTMLButtonElement {
-    const btn = el('button', {
-      class: 'tabbar__tab',
-      role: 'tab',
-      id: `tab-${id}`,
-      'aria-controls': 'main-content',
-      'aria-selected': 'false',
-      tabindex: '-1',
-    }, label)
+    const btn = el(
+      'button',
+      {
+        class: 'tabbar__tab',
+        role: 'tab',
+        id: `tab-${id}`,
+        'aria-controls': 'main-content',
+        'aria-selected': 'false',
+        tabindex: '-1',
+      },
+      label
+    )
 
-    btn.addEventListener('click', () => { this.store.setState({ activeMode: id }) })
-    btn.addEventListener('keydown', (e: KeyboardEvent) => { this.handleArrowKey(e) })
+    btn.addEventListener('click', () => {
+      this.store.setState({ activeMode: id })
+    })
+    btn.addEventListener('keydown', (e: KeyboardEvent) => {
+      this.handleArrowKey(e)
+    })
     return btn
   }
 
   private handleArrowKey(e: KeyboardEvent): void {
     const tabs = Array.from(this.root.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
-    const idx = tabs.findIndex(tab => tab === e.currentTarget)
+    const idx = tabs.findIndex((tab) => tab === e.currentTarget)
     if (idx < 0) return
     let next = idx
     if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length
-    if (e.key === 'ArrowLeft')  next = (idx - 1 + tabs.length) % tabs.length
+    if (e.key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length
     if (e.key === 'Home') next = 0
-    if (e.key === 'End')  next = tabs.length - 1
+    if (e.key === 'End') next = tabs.length - 1
     if (['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
       e.preventDefault()
       tabs[next]?.focus()
@@ -45,17 +53,19 @@ export class TabBar {
 
   mount(parent: Element): void {
     parent.append(this.root)
-    this.unsubscribe = this.store.subscribe(s => this.update(s.activeMode))
+    this.unsubscribe = this.store.subscribe((s) => this.update(s.activeMode))
     this.update(this.store.getState().activeMode)
   }
 
   private update(activeMode: ActiveMode): void {
-    this.root.querySelectorAll<HTMLButtonElement>('[role="tab"]').forEach(tab => {
+    this.root.querySelectorAll<HTMLButtonElement>('[role="tab"]').forEach((tab) => {
       const isActive = tab.id === `tab-${activeMode}`
       tab.setAttribute('aria-selected', String(isActive))
       tab.setAttribute('tabindex', isActive ? '0' : '-1')
     })
   }
 
-  destroy(): void { this.unsubscribe?.() }
+  destroy(): void {
+    this.unsubscribe?.()
+  }
 }

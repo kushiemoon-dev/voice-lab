@@ -9,7 +9,7 @@ export function extractHarmonics(
   f0Hz: number,
   sampleRate: number,
   binCount: number,
-  maxHarmonics = 8,
+  maxHarmonics = 8
 ): Harmonic[] {
   const nyquist = sampleRate / 2
   const hzPerBin = nyquist / binCount
@@ -24,7 +24,10 @@ export function extractHarmonics(
     let peakDb = -Infinity
     for (let b = Math.max(0, bin - 3); b <= Math.min(binCount - 1, bin + 3); b++) {
       const db = freqData[b] ?? -100
-      if (db > peakDb) { peakDb = db; peakBin = b }
+      if (db > peakDb) {
+        peakDb = db
+        peakBin = b
+      }
     }
 
     const hz = peakBin * hzPerBin

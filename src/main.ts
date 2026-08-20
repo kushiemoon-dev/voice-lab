@@ -27,10 +27,16 @@ if ('serviceWorker' in navigator) {
               style:
                 'position:fixed;bottom:1rem;right:1rem;z-index:100;background:var(--surface-raised,#21262d);border:1px solid var(--trans-blue,#5bcefa);border-radius:8px;padding:0.75rem 1rem;display:flex;gap:0.75rem;align-items:center;font-size:0.875rem;',
             },
-            el('span', {}, t('pwa.updateAvailable')),
+            el('span', {}, t('pwa.updateAvailable'))
           )
-          const btn = el('button', { class: 'btn btn--primary', style: 'padding:0.25rem 0.75rem;font-size:0.8rem;' }, t('pwa.reload')) as HTMLButtonElement
-          btn.addEventListener('click', () => { void updateSW(true) })
+          const btn = el(
+            'button',
+            { class: 'btn btn--primary', style: 'padding:0.25rem 0.75rem;font-size:0.8rem;' },
+            t('pwa.reload')
+          ) as HTMLButtonElement
+          btn.addEventListener('click', () => {
+            void updateSW(true)
+          })
           toast.append(btn)
           document.body.append(toast)
         },

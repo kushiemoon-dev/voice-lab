@@ -6,7 +6,7 @@ export class MedianSmoother {
 
   constructor(
     private readonly size: number,
-    private readonly clarityThreshold: number,
+    private readonly clarityThreshold: number
   ) {}
 
   push(hz: number, clarity: number): number | null {

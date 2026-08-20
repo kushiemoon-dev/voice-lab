@@ -1,5 +1,5 @@
 import { setupHiDpiCanvas, clearCanvas } from './canvasUtils'
-import { pitchToY, timeToX } from './scales'
+import { pitchToY } from './scales'
 import { VOICE_RANGES } from '../../domain/voiceRanges'
 import { hzToNoteName } from '../../domain/noteFrequencies'
 import { t } from '../../i18n/strings'
@@ -105,7 +105,11 @@ export class PitchGraphRenderer {
       ctx.fillStyle = LABEL_COLOR
       ctx.font = 'bold 11px system-ui, sans-serif'
       ctx.textAlign = 'left'
-      ctx.fillText(`${t('pitch.target')} ${this.targetHz} Hz (${hzToNoteName(this.targetHz)})`, PAD_LEFT + 6, yTarget - 5)
+      ctx.fillText(
+        `${t('pitch.target')} ${this.targetHz} Hz (${hzToNoteName(this.targetHz)})`,
+        PAD_LEFT + 6,
+        yTarget - 5
+      )
       ctx.restore()
     }
 

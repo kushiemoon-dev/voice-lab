@@ -6,7 +6,7 @@ import { createButton } from '../components/Button'
 import type { AudioEngine } from '../../audio/AudioEngine'
 import { t } from '../../i18n/strings'
 
-const DISPLAY_NOTES = NOTES.filter(n => n.hz >= 80 && n.hz <= 350)
+const DISPLAY_NOTES = NOTES.filter((n) => n.hz >= 80 && n.hz <= 350)
 
 export class TonesView {
   private readonly root: HTMLElement
@@ -16,26 +16,45 @@ export class TonesView {
 
   constructor(private readonly engine: AudioEngine) {
     const select = createSelect(
-      DISPLAY_NOTES.map(n => ({ value: String(n.hz), label: `${n.name} — ${Math.round(n.hz)} Hz` })),
-      (val) => { this.currentHz = parseFloat(val) },
-      t('tones.selectPlaceholder'),
+      DISPLAY_NOTES.map((n) => ({
+        value: String(n.hz),
+        label: `${n.name} — ${Math.round(n.hz)} Hz`,
+      })),
+      (val) => {
+        this.currentHz = parseFloat(val)
+      },
+      t('tones.selectPlaceholder')
     )
 
     // Sélectionner A3 ≈ 220 Hz par défaut
-    const defaultOpt = Array.from(select.options).find(o => Math.abs(parseFloat(o.value) - 220) < 5)
+    const defaultOpt = Array.from(select.options).find(
+      (o) => Math.abs(parseFloat(o.value) - 220) < 5
+    )
     if (defaultOpt) select.value = defaultOpt.value
 
-    this.playBtn = createButton(t('tones.play'), () => { this.toggle() }, 'primary')
+    this.playBtn = createButton(
+      t('tones.play'),
+      () => {
+        this.toggle()
+      },
+      'primary'
+    )
 
-    this.root = el('div', { class: 'view-card' },
+    this.root = el(
+      'div',
+      { class: 'view-card' },
       el('h1', { style: 'font-size: 1rem; margin-bottom: var(--space-4);' }, t('tones.title')),
-      el('p', { style: 'color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--space-4);' },
-        t('tones.description'),
+      el(
+        'p',
+        { style: 'color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--space-4);' },
+        t('tones.description')
       ),
-      el('div', { style: 'display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap;' },
+      el(
+        'div',
+        { style: 'display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap;' },
         select,
-        this.playBtn,
-      ),
+        this.playBtn
+      )
     )
   }
 
@@ -50,7 +69,11 @@ export class TonesView {
     }
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 
-  destroy(): void { this.player.stop() }
+  destroy(): void {
+    this.player.stop()
+  }
 }

@@ -1,6 +1,6 @@
 // Piano-like harmonics: [frequency ratio, relative amplitude]
 const PIANO_PARTIALS: Array<[number, number]> = [
-  [1.0, 0.50],
+  [1.0, 0.5],
   [2.0, 0.25],
   [3.0, 0.15],
   [4.0, 0.08],
@@ -46,10 +46,16 @@ export class TonePlayer {
     this.masterGain.gain.cancelScheduledValues(now)
     this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now)
     this.masterGain.gain.linearRampToValueAtTime(0, now + 0.03)
-    this.oscs.forEach(osc => { try { osc.stop(now + 0.05) } catch {} })
+    this.oscs.forEach((osc) => {
+      try {
+        osc.stop(now + 0.05)
+      } catch {}
+    })
     this.oscs = []
     this.masterGain = null
   }
 
-  isPlaying(): boolean { return this.masterGain !== null }
+  isPlaying(): boolean {
+    return this.masterGain !== null
+  }
 }

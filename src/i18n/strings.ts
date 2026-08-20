@@ -16,8 +16,7 @@ const en = {
 
   // Mic gate
   'gate.title': 'Microphone access required',
-  'gate.description':
-    'Voice Lab analyses your voice in real time. Nothing is recorded or stored.',
+  'gate.description': 'Voice Lab analyses your voice in real time. Nothing is recorded or stored.',
   'gate.button': '🎙 Allow microphone',
   'gate.requesting': 'Requesting permission…',
 
@@ -114,10 +113,13 @@ const en = {
   'pwa.reload': 'Reload',
 
   // Error messages
-  'error.micPermissionDenied': 'Microphone access denied. Click the mic icon in the address bar to allow.',
+  'error.micPermissionDenied':
+    'Microphone access denied. Click the mic icon in the address bar to allow.',
   'error.micNoDevice': 'No microphone detected. Plug one in and try again.',
-  'error.micInsecureContext': 'This page must be loaded over HTTPS (or localhost) to access the microphone.',
-  'error.micUnsupportedBrowser': 'Your browser does not support microphone access. Use a recent Chrome, Firefox or Edge.',
+  'error.micInsecureContext':
+    'This page must be loaded over HTTPS (or localhost) to access the microphone.',
+  'error.micUnsupportedBrowser':
+    'Your browser does not support microphone access. Use a recent Chrome, Firefox or Edge.',
   'error.micUnknown': 'Unexpected error accessing the microphone. Please try again.',
 
   // Phrases view
@@ -130,14 +132,16 @@ const en = {
 
   // Tones view
   'tones.title': 'Reference tones',
-  'tones.description': 'Choose a note and imitate it. The pitch graph will show you if you are in tune.',
+  'tones.description':
+    'Choose a note and imitate it. The pitch graph will show you if you are in tune.',
   'tones.selectPlaceholder': 'Choose a note',
   'tones.play': '▶ Play',
   'tones.stop': '⏹ Stop',
 
   // Labo sub-views
   'spectrum.description': 'Real-time frequency spectrum — 0 to 8,000 Hz',
-  'spectrogram.description': 'Time × frequency map — colour = intensity (black → blue → pink → white)',
+  'spectrogram.description':
+    'Time × frequency map — colour = intensity (black → blue → pink → white)',
   'harmonics.description': 'Harmonic structure — pink = fundamental (H1), blue = harmonics',
   'harmonics.holdVowel': 'Hold a vowel to see the harmonics.',
   'harmonics.fundamental': 'Fundamental',
@@ -225,13 +229,15 @@ const fr: Record<keyof typeof en, string> = {
 
   // Mic gate
   'gate.title': 'Accès au microphone requis',
-  'gate.description': "Voice Lab analyse votre voix en temps réel. Rien n'est enregistré ni stocké.",
+  'gate.description':
+    "Voice Lab analyse votre voix en temps réel. Rien n'est enregistré ni stocké.",
   'gate.button': '🎙 Autoriser le microphone',
   'gate.requesting': 'Demande en cours…',
 
   // Landing page
   'landing.hero.tagline': 'Entraînez votre voix en temps réel, directement dans votre navigateur.',
-  'landing.hero.audience': "Conçu pour le travail vocal trans et non-binaire, en complément des séances d'orthophonie.",
+  'landing.hero.audience':
+    "Conçu pour le travail vocal trans et non-binaire, en complément des séances d'orthophonie.",
   'landing.cta': 'Commencer',
   'landing.privacy.title': 'Votre voix ne quitte jamais votre appareil',
   'landing.privacy.local': "100% local — rien n'est envoyé nulle part",
@@ -243,13 +249,13 @@ const fr: Record<keyof typeof en, string> = {
   'landing.features.tones': 'Notes de référence et gammes pour votre registre.',
   'landing.features.phrases': "Phrases d'exercice à lire à voix haute.",
   'landing.features.record': "Enregistrez et écoutez localement — rien n'est envoyé.",
-  'landing.features.labo': "Spectrogramme, harmoniques et analyse qualité vocale.",
+  'landing.features.labo': 'Spectrogramme, harmoniques et analyse qualité vocale.',
 
   // Header
   'header.home': '← Accueil',
 
   // Footer
-  'footer.privacy': "100% local — aucune donnée ne quitte votre appareil.",
+  'footer.privacy': '100% local — aucune donnée ne quitte votre appareil.',
   'footer.disclaimer': "Un outil d'exercice ; il ne remplace pas un suivi orthophonique.",
   'footer.openSource': 'Open-source sur GitHub',
 
@@ -265,7 +271,8 @@ const fr: Record<keyof typeof en, string> = {
   'pitch.targetLabel': 'Repère de fréquence',
 
   // Record view
-  'record.privacy': "Rien ne quitte votre appareil. L'enregistrement est conservé uniquement en RAM.",
+  'record.privacy':
+    "Rien ne quitte votre appareil. L'enregistrement est conservé uniquement en RAM.",
   'record.listen': 'Écouter',
   'record.listenStop': 'Arrêter',
   'record.clear': 'Effacer',
@@ -280,7 +287,7 @@ const fr: Record<keyof typeof en, string> = {
   'record.recorded': 'enregistrées',
 
   // Labo view
-  "labo.title": "Laboratoire d'analyse acoustique",
+  'labo.title': "Laboratoire d'analyse acoustique",
   'labo.tab.spectrum': 'Spectre',
   'labo.tab.spectrogram': 'Spectrogramme',
   'labo.tab.harmonics': 'Harmoniques',
@@ -321,10 +328,13 @@ const fr: Record<keyof typeof en, string> = {
   'pwa.reload': 'Recharger',
 
   // Error messages
-  'error.micPermissionDenied': "Accès au microphone refusé. Cliquez sur l'icône micro dans la barre d'adresse pour l'autoriser.",
+  'error.micPermissionDenied':
+    "Accès au microphone refusé. Cliquez sur l'icône micro dans la barre d'adresse pour l'autoriser.",
   'error.micNoDevice': 'Aucun microphone détecté. Branchez-en un et réessayez.',
-  'error.micInsecureContext': 'Cette page doit être chargée en HTTPS (ou localhost) pour accéder au microphone.',
-  'error.micUnsupportedBrowser': "Votre navigateur ne supporte pas l'accès au microphone. Utilisez une version récente de Chrome, Firefox ou Edge.",
+  'error.micInsecureContext':
+    'Cette page doit être chargée en HTTPS (ou localhost) pour accéder au microphone.',
+  'error.micUnsupportedBrowser':
+    "Votre navigateur ne supporte pas l'accès au microphone. Utilisez une version récente de Chrome, Firefox ou Edge.",
   'error.micUnknown': "Erreur inattendue lors de l'accès au microphone. Veuillez réessayer.",
 
   // Phrases view
@@ -337,14 +347,16 @@ const fr: Record<keyof typeof en, string> = {
 
   // Tones view
   'tones.title': 'Tons de référence',
-  'tones.description': 'Choisissez une note et imitez-la. Le graphe de hauteur vous montrera si vous êtes dans le ton.',
+  'tones.description':
+    'Choisissez une note et imitez-la. Le graphe de hauteur vous montrera si vous êtes dans le ton.',
   'tones.selectPlaceholder': 'Choisir une note',
   'tones.play': '▶ Jouer',
   'tones.stop': '⏹ Arrêter',
 
   // Labo sub-views
   'spectrum.description': 'Spectre de fréquences en temps réel — 0 à 8 000 Hz',
-  'spectrogram.description': 'Carte temps × fréquence — couleur = intensité (noir → bleu → rose → blanc)',
+  'spectrogram.description':
+    'Carte temps × fréquence — couleur = intensité (noir → bleu → rose → blanc)',
   'harmonics.description': 'Structure harmonique — rose = fondamentale (H1), bleu = harmoniques',
   'harmonics.holdVowel': 'Tenez une voyelle pour voir les harmoniques.',
   'harmonics.fundamental': 'Fondamentale',
@@ -363,7 +375,7 @@ const fr: Record<keyof typeof en, string> = {
 
   // Record export
   'record.export': '⬇ WAV',
-  'record.workletError': 'Enregistrement indisponible : le worklet audio n\'a pas pu être chargé.',
+  'record.workletError': "Enregistrement indisponible : le worklet audio n'a pas pu être chargé.",
 
   // Theme labels
   'theme.general': 'Général',
@@ -428,7 +440,9 @@ function detectLang(): Lang {
   }
 }
 
-const stored = (typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null) as Lang | null
+const stored = (
+  typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null
+) as Lang | null
 let current: Lang = stored ?? detectLang()
 
 export function getLang(): Lang {

@@ -5,7 +5,7 @@ function sineWave(freqHz: number, sampleRate: number, durationS: number): Float3
   const n = Math.floor(sampleRate * durationS)
   const frame = new Float32Array(n)
   for (let i = 0; i < n; i++) {
-    frame[i] = Math.sin(2 * Math.PI * freqHz * i / sampleRate)
+    frame[i] = Math.sin((2 * Math.PI * freqHz * i) / sampleRate)
   }
   return frame
 }
@@ -26,9 +26,9 @@ describe('computeVoiceQuality', () => {
     expect(m.shimmer).not.toBeNull()
     expect(m.hnr).not.toBeNull()
 
-    expect(m.jitter!).toBeLessThan(1)      // jitter < 1% pour signal pur
-    expect(m.shimmer!).toBeLessThan(1)     // shimmer < 1% pour signal pur
-    expect(m.hnr!).toBeGreaterThan(20)     // HNR > 20 dB pour sinus pur (fix E1)
+    expect(m.jitter!).toBeLessThan(1) // jitter < 1% pour signal pur
+    expect(m.shimmer!).toBeLessThan(1) // shimmer < 1% pour signal pur
+    expect(m.hnr!).toBeGreaterThan(20) // HNR > 20 dB pour sinus pur (fix E1)
   })
 
   it('signal silence → valid=false', () => {

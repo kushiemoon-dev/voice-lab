@@ -20,7 +20,10 @@ function makeSyntheticSpectrum(peaks: { hz: number; db: number }[]): Float32Arra
 
 describe('estimateFormants', () => {
   it('valid=false quand f0Hz est null', () => {
-    const freq = makeSyntheticSpectrum([{ hz: 700, db: -10 }, { hz: 1800, db: -15 }])
+    const freq = makeSyntheticSpectrum([
+      { hz: 700, db: -10 },
+      { hz: 1800, db: -15 },
+    ])
     const r = estimateFormants(freq, SR, BIN_COUNT, null)
     expect(r.valid).toBe(false)
   })
@@ -32,7 +35,10 @@ describe('estimateFormants', () => {
   })
 
   it('détecte F1 dans la bande [250–900 Hz]', () => {
-    const freq = makeSyntheticSpectrum([{ hz: 700, db: -10 }, { hz: 1800, db: -15 }])
+    const freq = makeSyntheticSpectrum([
+      { hz: 700, db: -10 },
+      { hz: 1800, db: -15 },
+    ])
     const r = estimateFormants(freq, SR, BIN_COUNT, 150)
     expect(r.valid).toBe(true)
     expect(r.f1).toBeGreaterThanOrEqual(250)
@@ -41,7 +47,10 @@ describe('estimateFormants', () => {
   })
 
   it('détecte F2 dans la bande [900–2500 Hz]', () => {
-    const freq = makeSyntheticSpectrum([{ hz: 700, db: -10 }, { hz: 1800, db: -15 }])
+    const freq = makeSyntheticSpectrum([
+      { hz: 700, db: -10 },
+      { hz: 1800, db: -15 },
+    ])
     const r = estimateFormants(freq, SR, BIN_COUNT, 150)
     expect(r.valid).toBe(true)
     expect(r.f2).toBeGreaterThanOrEqual(900)

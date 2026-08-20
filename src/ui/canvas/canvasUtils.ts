@@ -1,7 +1,7 @@
 export const setupHiDpiCanvas = (
   canvas: HTMLCanvasElement,
   width: number,
-  height: number,
+  height: number
 ): CanvasRenderingContext2D => {
   const dpr = window.devicePixelRatio || 1
   canvas.width = width * dpr
@@ -18,7 +18,7 @@ export const clearCanvas = (
   ctx: CanvasRenderingContext2D,
   width: number,
   height: number,
-  color: string,
+  color: string
 ): void => {
   ctx.fillStyle = color
   ctx.fillRect(0, 0, width, height)
@@ -26,9 +26,9 @@ export const clearCanvas = (
 
 export const createResizeObserver = (
   target: Element,
-  onResize: (w: number, h: number) => void,
+  onResize: (w: number, h: number) => void
 ): ResizeObserver => {
-  const observer = new ResizeObserver(entries => {
+  const observer = new ResizeObserver((entries) => {
     for (const entry of entries) {
       const { width, height } = entry.contentRect
       onResize(Math.round(width), Math.round(height))

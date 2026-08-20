@@ -33,16 +33,26 @@ export class HarmonicsView {
     }) as HTMLCanvasElement
     this.canvasWrap = el('div', { style: 'width:100%;' }, this.canvas)
     this.renderer = new HarmonicsRenderer(this.canvas)
-    this.infoEl = el('p', {
-      style: 'font-size:0.9rem;color:var(--text-muted);margin-top:var(--space-3);min-height:1.4em;',
-      'aria-live': 'polite',
-    }, t('harmonics.holdVowel'))
+    this.infoEl = el(
+      'p',
+      {
+        style:
+          'font-size:0.9rem;color:var(--text-muted);margin-top:var(--space-3);min-height:1.4em;',
+        'aria-live': 'polite',
+      },
+      t('harmonics.holdVowel')
+    )
 
-    this.root = el('div', {},
-      el('p', { style: 'font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-3);' },
-        t('harmonics.description')),
+    this.root = el(
+      'div',
+      {},
+      el(
+        'p',
+        { style: 'font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-3);' },
+        t('harmonics.description')
+      ),
       this.canvasWrap,
-      this.infoEl,
+      this.infoEl
     )
   }
 
@@ -55,11 +65,11 @@ export class HarmonicsView {
     })
 
     // latestFreqData est valide uniquement pendant le RAF courant (buffer réutilisé)
-    this.unsubFreq = this.engine.onFreqFrame(data => {
+    this.unsubFreq = this.engine.onFreqFrame((data) => {
       this.latestFreqData = data
     })
 
-    this.unsubFrame = this.engine.onFrame(frame => {
+    this.unsubFrame = this.engine.onFrame((frame) => {
       const raw = this.estimator.estimate(frame, sr)
       const hz = this.smoother.push(raw.hz ?? 0, raw.clarity)
 
@@ -86,5 +96,7 @@ export class HarmonicsView {
     this.smoother.reset()
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

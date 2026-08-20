@@ -18,7 +18,10 @@ function peakBin(data: Float32Array, lo: number, hi: number): number {
   let best = lo
   let bestVal = -Infinity
   for (let i = lo; i <= hi; i++) {
-    if (data[i]! > bestVal) { bestVal = data[i]!; best = i }
+    if (data[i]! > bestVal) {
+      bestVal = data[i]!
+      best = i
+    }
   }
   return best
 }
@@ -33,14 +36,16 @@ export function estimateFormants(
   freqDb: Float32Array,
   sampleRate: number,
   binCount: number,
-  f0Hz: number | null,
+  f0Hz: number | null
 ): Formants {
   if (f0Hz === null) return { f1: 0, f2: 0, valid: false }
 
   const hzPerBin = sampleRate / (2 * binCount)
 
   let maxDb = -Infinity
-  for (const v of freqDb) { if (v > maxDb) maxDb = v }
+  for (const v of freqDb) {
+    if (v > maxDb) maxDb = v
+  }
   if (maxDb < SILENCE_DB) return { f1: 0, f2: 0, valid: false }
 
   const smoothed = smoothEnvelope(freqDb)

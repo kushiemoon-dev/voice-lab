@@ -14,7 +14,13 @@ describe('mapDomException', () => {
     expect(mapDomException(new Error('wtf')).kind).toBe('unknown')
   })
   it('each kind has a non-empty English message', () => {
-    const kinds = ['permission-denied', 'no-device', 'insecure-context', 'unsupported-browser', 'unknown'] as const
-    kinds.forEach(k => expect(micError(k).message.length).toBeGreaterThan(10))
+    const kinds = [
+      'permission-denied',
+      'no-device',
+      'insecure-context',
+      'unsupported-browser',
+      'unknown',
+    ] as const
+    kinds.forEach((k) => expect(micError(k).message.length).toBeGreaterThan(10))
   })
 })

@@ -26,8 +26,10 @@ describe('rmsToDbfs', () => {
 })
 
 describe('hzToLogY', () => {
-  it('minHz retourne height (bas du canvas)', () => expect(hzToLogY(60, 60, 500, 400)).toBeCloseTo(400, 1))
-  it('maxHz retourne 0 (haut du canvas)', () => expect(hzToLogY(500, 60, 500, 400)).toBeCloseTo(0, 1))
+  it('minHz retourne height (bas du canvas)', () =>
+    expect(hzToLogY(60, 60, 500, 400)).toBeCloseTo(400, 1))
+  it('maxHz retourne 0 (haut du canvas)', () =>
+    expect(hzToLogY(500, 60, 500, 400)).toBeCloseTo(0, 1))
   it('220 Hz est entre 0 et 400', () => {
     const y = hzToLogY(220, 60, 500, 400)
     expect(y).toBeGreaterThan(0)

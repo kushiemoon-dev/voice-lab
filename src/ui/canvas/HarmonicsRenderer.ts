@@ -22,12 +22,17 @@ export class HarmonicsRenderer {
     this.ctx2d = setupHiDpiCanvas(this.canvas, w, h)
   }
 
-  render(freqData: Float32Array, harmonics: Harmonic[], sampleRate: number, binCount: number): void {
+  render(
+    freqData: Float32Array,
+    harmonics: Harmonic[],
+    sampleRate: number,
+    binCount: number
+  ): void {
     const { ctx2d: ctx, width: W, height: H } = this
     clearCanvas(ctx, W, H, BG_COLOR)
 
     const nyquist = sampleRate / 2
-    const maxBin = Math.floor(MAX_FREQ_DISPLAY / nyquist * binCount)
+    const maxBin = Math.floor((MAX_FREQ_DISPLAY / nyquist) * binCount)
     const usedBins = Math.min(maxBin, freqData.length)
 
     // Spectre de fond en gris discret

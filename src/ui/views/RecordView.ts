@@ -29,17 +29,33 @@ export class RecordView {
   private readonly statusLive: HTMLElement
 
   constructor() {
-    this.recordBtn = createButton(t('record.start'), () => { this.onToggleRecord() }, 'primary')
-    this.listenBtn = createButton(`▶ ${t('record.listen')}`, () => { this.onListen() })
+    this.recordBtn = createButton(
+      t('record.start'),
+      () => {
+        this.onToggleRecord()
+      },
+      'primary'
+    )
+    this.listenBtn = createButton(`▶ ${t('record.listen')}`, () => {
+      this.onListen()
+    })
     this.listenBtn.disabled = true
-    this.exportBtn = createButton(t('record.export'), () => { void this.onExport() })
+    this.exportBtn = createButton(t('record.export'), () => {
+      void this.onExport()
+    })
     this.exportBtn.disabled = true
-    this.clearBtn = createButton(t('record.clear'), () => { this.onClear() })
+    this.clearBtn = createButton(t('record.clear'), () => {
+      this.onClear()
+    })
     this.clearBtn.disabled = true
 
-    this.durationEl = el('span', {
-      style: 'color: var(--text-muted); font-size: 0.9rem; font-variant-numeric: tabular-nums;',
-    }, `0s / ${MAX_SECONDS}s`)
+    this.durationEl = el(
+      'span',
+      {
+        style: 'color: var(--text-muted); font-size: 0.9rem; font-variant-numeric: tabular-nums;',
+      },
+      `0s / ${MAX_SECONDS}s`
+    )
 
     this.recDot = el('span', { 'aria-hidden': 'true', style: 'display: none;' }, '●')
 
@@ -50,22 +66,40 @@ export class RecordView {
     })
 
     this.waveCanvas = el('canvas', {
-      width: '800', height: '80',
+      width: '800',
+      height: '80',
       'aria-hidden': 'true',
-      style: 'width: 100%; height: 80px; border-radius: var(--radius-md); background: var(--surface-raised); display: none; margin-top: var(--space-4);',
+      style:
+        'width: 100%; height: 80px; border-radius: var(--radius-md); background: var(--surface-raised); display: none; margin-top: var(--space-4);',
     }) as unknown as HTMLCanvasElement
 
-    this.root = el('div', { class: 'view-card' },
+    this.root = el(
+      'div',
+      { class: 'view-card' },
       el('h1', { style: 'margin-bottom: var(--space-2);' }, t('record.title')),
-      el('p', { style: 'color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--space-5);' }, t('record.privacy')),
-      el('div', { style: 'display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;' },
-        this.recordBtn, this.recDot, this.durationEl,
+      el(
+        'p',
+        { style: 'color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--space-5);' },
+        t('record.privacy')
+      ),
+      el(
+        'div',
+        { style: 'display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;' },
+        this.recordBtn,
+        this.recDot,
+        this.durationEl
       ),
       this.waveCanvas,
-      el('div', { style: 'display: flex; gap: var(--space-2); margin-top: var(--space-4); flex-wrap: wrap;' },
-        this.listenBtn, this.exportBtn, this.clearBtn,
+      el(
+        'div',
+        {
+          style: 'display: flex; gap: var(--space-2); margin-top: var(--space-4); flex-wrap: wrap;',
+        },
+        this.listenBtn,
+        this.exportBtn,
+        this.clearBtn
       ),
-      this.statusLive,
+      this.statusLive
     )
 
     this.ringBuffer = new RingBuffer(48000 * MAX_SECONDS)
@@ -88,18 +122,26 @@ export class RecordView {
           this.stopRecording()
         }
       })
-    } catch (_) {
-      const errEl = el('p', {
-        role: 'alert',
-        style: 'color:var(--error);font-size:0.9rem;margin-top:var(--space-4);',
-      }, t('record.workletError'))
+    } catch {
+      const errEl = el(
+        'p',
+        {
+          role: 'alert',
+          style: 'color:var(--error);font-size:0.9rem;margin-top:var(--space-4);',
+        },
+        t('record.workletError')
+      )
       this.root.append(errEl)
       this.recordBtn.disabled = true
     }
   }
 
   private onToggleRecord(): void {
-    if (this.state === 'recording') { this.stopRecording() } else { this.startRecording() }
+    if (this.state === 'recording') {
+      this.stopRecording()
+    } else {
+      this.startRecording()
+    }
   }
 
   private startRecording(): void {
@@ -126,7 +168,10 @@ export class RecordView {
 
   private stopRecording(): void {
     this.state = 'stopped'
-    if (this.tickInterval) { clearInterval(this.tickInterval); this.tickInterval = null }
+    if (this.tickInterval) {
+      clearInterval(this.tickInterval)
+      this.tickInterval = null
+    }
 
     this.recordBtn.textContent = t('record.start')
     this.recordBtn.style.background = ''
@@ -151,7 +196,8 @@ export class RecordView {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const W = 800, H = 80
+    const W = 800,
+      H = 80
     const step = Math.max(1, Math.floor(data.length / W))
 
     // Normalize to peak so even quiet signals fill the display
@@ -167,13 +213,17 @@ export class RecordView {
 
     ctx.strokeStyle = 'rgba(255,255,255,0.08)'
     ctx.lineWidth = 1
-    ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(0, H / 2)
+    ctx.lineTo(W, H / 2)
+    ctx.stroke()
 
     ctx.strokeStyle = '#38bdf8'
     ctx.lineWidth = 1.5
     ctx.beginPath()
     for (let x = 0; x < W; x++) {
-      let min = 1, max = -1
+      let min = 1,
+        max = -1
       for (let s = 0; s < step; s++) {
         const v = (data[x * step + s] ?? 0) * scale
         if (v < min) min = v
@@ -189,18 +239,27 @@ export class RecordView {
   }
 
   private onListen(): void {
-    if (this.playbackSource) { this.stopPlayback(); return }
+    if (this.playbackSource) {
+      this.stopPlayback()
+      return
+    }
     const audioCtx = this._engine?.getContext() ?? null
     if (!audioCtx) return
     this.playbackSource = playSnapshot(
-      this.ringBuffer.snapshot(), this.sampleRate, audioCtx,
-      () => { this.onPlaybackEnded() },
+      this.ringBuffer.snapshot(),
+      this.sampleRate,
+      audioCtx,
+      () => {
+        this.onPlaybackEnded()
+      }
     )
     this.listenBtn.textContent = `⏹ ${t('record.listenStop')}`
   }
 
   private stopPlayback(): void {
-    try { this.playbackSource?.stop() } catch {}
+    try {
+      this.playbackSource?.stop()
+    } catch {}
   }
 
   private onPlaybackEnded(): void {
@@ -221,7 +280,9 @@ export class RecordView {
         document.body.removeChild(a)
         return
       }
-    } catch (_) { /* fallback */ }
+    } catch {
+      /* fallback */
+    }
     // Fallback: data URI for static hosting
     const bytes = new Uint8Array(wav)
     const CHUNK = 8192
@@ -255,5 +316,7 @@ export class RecordView {
     if (this.tickInterval) clearInterval(this.tickInterval)
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

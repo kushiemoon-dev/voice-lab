@@ -30,7 +30,7 @@ describe('encodeWav', () => {
     expect(v.getUint32(40, true)).toBe(n * 2)
   })
 
-  it('sample rate dans l\'entête', () => {
+  it("sample rate dans l'entête", () => {
     const buf = encodeWav(new Float32Array(10), 22050)
     const v = new DataView(buf)
     expect(v.getUint32(24, true)).toBe(22050)
@@ -39,9 +39,9 @@ describe('encodeWav', () => {
   it('PCM mono 16 bits — format audio code = 1', () => {
     const buf = encodeWav(new Float32Array(10), SR)
     const v = new DataView(buf)
-    expect(v.getUint16(20, true)).toBe(1)   // PCM
-    expect(v.getUint16(22, true)).toBe(1)   // mono
-    expect(v.getUint16(34, true)).toBe(16)  // 16 bits
+    expect(v.getUint16(20, true)).toBe(1) // PCM
+    expect(v.getUint16(22, true)).toBe(1) // mono
+    expect(v.getUint16(34, true)).toBe(16) // 16 bits
   })
 
   it('clamp les échantillons hors [-1, 1]', () => {
@@ -50,7 +50,7 @@ describe('encodeWav', () => {
     const v = new DataView(buf)
     const s0 = v.getInt16(44, true)
     const s1 = v.getInt16(46, true)
-    expect(s0).toBe(0x7fff)   // +1.0 → max positif
-    expect(s1).toBe(-0x8000)  // -1.0 → min négatif
+    expect(s0).toBe(0x7fff) // +1.0 → max positif
+    expect(s1).toBe(-0x8000) // -1.0 → min négatif
   })
 })

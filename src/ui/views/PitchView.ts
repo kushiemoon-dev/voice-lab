@@ -51,7 +51,7 @@ export class PitchView {
     this.renderer = new PitchGraphRenderer(this.canvas)
 
     // Readout live — état idle par défaut
-    this.hzEl   = el('span', { class: 'pitch-readout__hz'   }, '—')
+    this.hzEl = el('span', { class: 'pitch-readout__hz' }, '—')
     this.noteEl = el('span', { class: 'pitch-readout__note' }, '')
     this.idleEl = el('span', { class: 'pitch-readout__idle' }, t('pitch.idle'))
     this.readoutEl = el('div', { class: 'pitch-readout' }, this.idleEl)
@@ -59,51 +59,73 @@ export class PitchView {
     // Select cible
     const targetOptions = [
       { label: t('pitch.targetNone'), value: 'none' },
-      { label: '165 Hz — E3',         value: '165' },
-      { label: '180 Hz — F#3',        value: '180' },
-      { label: '200 Hz — G3',         value: '200' },
-      { label: '220 Hz — A3',         value: '220' },
-      { label: '250 Hz — B3',         value: '250' },
+      { label: '165 Hz — E3', value: '165' },
+      { label: '180 Hz — F#3', value: '180' },
+      { label: '200 Hz — G3', value: '200' },
+      { label: '220 Hz — A3', value: '220' },
+      { label: '250 Hz — B3', value: '250' },
     ] as const
-    const targetSelect = createSelect(targetOptions, (val) => {
-      this.renderer.setTargetHz(val === 'none' ? null : parseInt(val, 10))
-    }, t('pitch.targetLabel'))
-    const toolbar = el('div', { class: 'pitch-toolbar' },
+    const targetSelect = createSelect(
+      targetOptions,
+      (val) => {
+        this.renderer.setTargetHz(val === 'none' ? null : parseInt(val, 10))
+      },
+      t('pitch.targetLabel')
+    )
+    const toolbar = el(
+      'div',
+      { class: 'pitch-toolbar' },
       el('span', { class: 'pitch-toolbar__label' }, t('pitch.target')),
-      targetSelect,
+      targetSelect
     )
 
     // Légende
-    const legend = el('div', { class: 'legend' },
-      el('span', { class: 'legend__item' },
+    const legend = el(
+      'div',
+      { class: 'legend' },
+      el(
+        'span',
+        { class: 'legend__item' },
         el('span', { class: 'legend__swatch', style: 'background: rgba(148, 163, 184, 0.4);' }),
-        t('pitch.band.low')),
-      el('span', { class: 'legend__item' },
+        t('pitch.band.low')
+      ),
+      el(
+        'span',
+        { class: 'legend__item' },
         el('span', { class: 'legend__swatch', style: 'background: rgba(148, 163, 184, 0.55);' }),
-        t('pitch.band.mid')),
-      el('span', { class: 'legend__item' },
+        t('pitch.band.mid')
+      ),
+      el(
+        'span',
+        { class: 'legend__item' },
         el('span', { class: 'legend__swatch', style: 'background: rgba(148, 163, 184, 0.4);' }),
-        t('pitch.band.high')),
+        t('pitch.band.high')
+      )
     )
 
     // Volume
     this.volFeedbackEl = el('span', {
-      style: 'color: var(--text-muted); font-size: 0.8rem; margin-top: var(--space-1); display: block;',
+      style:
+        'color: var(--text-muted); font-size: 0.8rem; margin-top: var(--space-1); display: block;',
     })
-    const volumeBlock = el('div', { class: 'volume-block' },
+    const volumeBlock = el(
+      'div',
+      { class: 'volume-block' },
       el('div', { class: 'volume-block__label' }, t('pitch.volume')),
       this.meter.element,
-      this.volFeedbackEl,
+      this.volFeedbackEl
     )
 
-    this.root = el('div', { class: 'view-card', style: 'padding: var(--space-6);' },
+    this.root = el(
+      'div',
+      { class: 'view-card', style: 'padding: var(--space-6);' },
       el('h1', { style: 'font-size: 1rem; margin-bottom: var(--space-4);' }, t('pitch.title')),
       this.readoutEl,
       this.canvasWrap,
       legend,
       toolbar,
       volumeBlock,
-      this.liveRegion.element,
+      this.liveRegion.element
     )
   }
 
@@ -117,7 +139,7 @@ export class PitchView {
 
     const SAMPLE_INTERVAL_MS = 33 // ~30 Hz → 300 pts / 30 ≈ 10 s de fenêtre
 
-    this.unsubFrame = this.engine.onFrame(frame => {
+    this.unsubFrame = this.engine.onFrame((frame) => {
       const sr = this.engine.getSampleRate()
       const raw = this.estimator.estimate(frame, sr)
       const hz = this.smoother.push(raw.hz ?? 0, raw.clarity)
@@ -150,5 +172,7 @@ export class PitchView {
     this.smoother.reset()
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

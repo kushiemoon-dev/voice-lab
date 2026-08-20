@@ -33,14 +33,22 @@ export class App {
 
     const features = detectFeatures()
     if (!isFullySupported(features)) {
-      this.shell.setContent(el(
-        'div',
-        { class: 'view-card', style: 'padding: 2rem; text-align: center;' },
-        el('p', { style: 'color: var(--error, #f85149); font-size: 1.1rem;' },
-          t('app.unsupported')),
-        el('p', { style: 'color: var(--text-muted, #8b949e); font-size: 0.9rem; margin-top: 0.5rem;' },
-          t('app.unsupportedHint')),
-      ))
+      this.shell.setContent(
+        el(
+          'div',
+          { class: 'view-card', style: 'padding: 2rem; text-align: center;' },
+          el(
+            'p',
+            { style: 'color: var(--error, #f85149); font-size: 1.1rem;' },
+            t('app.unsupported')
+          ),
+          el(
+            'p',
+            { style: 'color: var(--text-muted, #8b949e); font-size: 0.9rem; margin-top: 0.5rem;' },
+            t('app.unsupportedHint')
+          )
+        )
+      )
       return
     }
 
@@ -76,7 +84,7 @@ export class App {
         this.gateActive = false
 
         if (this.currentStream) {
-          this.currentStream.getTracks().forEach(track => track.stop())
+          this.currentStream.getTracks().forEach((track) => track.stop())
           this.currentStream = null
         }
         void this.engine.stop()

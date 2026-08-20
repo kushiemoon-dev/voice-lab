@@ -34,8 +34,12 @@ export class PitchStatsAccumulator {
     this.sum += hz
     if (hz < this.min) this.min = hz
     if (hz > this.max) this.max = hz
-    if (this.targetMin !== null && this.targetMax !== null &&
-        hz >= this.targetMin && hz <= this.targetMax) {
+    if (
+      this.targetMin !== null &&
+      this.targetMax !== null &&
+      hz >= this.targetMin &&
+      hz <= this.targetMax
+    ) {
       this.inTargetCount++
     }
     for (const range of VOICE_RANGES) {
@@ -47,17 +51,30 @@ export class PitchStatsAccumulator {
 
   getStats(): PitchStats {
     if (this.count === 0) {
-      return { count: 0, minHz: null, maxHz: null, meanHz: null, rangeHz: null, f0RangeSemitones: null, targetPct: null, dominantRange: null }
+      return {
+        count: 0,
+        minHz: null,
+        maxHz: null,
+        meanHz: null,
+        rangeHz: null,
+        f0RangeSemitones: null,
+        targetPct: null,
+        dominantRange: null,
+      }
     }
 
-    const targetPct = (this.targetMin !== null && this.targetMax !== null)
-      ? Math.round((this.inTargetCount / this.count) * 100)
-      : null
+    const targetPct =
+      this.targetMin !== null && this.targetMax !== null
+        ? Math.round((this.inTargetCount / this.count) * 100)
+        : null
 
     let dominantRange: string | null = null
     let best = 0
     for (const [label, cnt] of this.rangeCounts) {
-      if (cnt > best) { best = cnt; dominantRange = label }
+      if (cnt > best) {
+        best = cnt
+        dominantRange = label
+      }
     }
 
     const f0RangeSemitones = Math.round(hzToMidi(this.max) - hzToMidi(this.min))

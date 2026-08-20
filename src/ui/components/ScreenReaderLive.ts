@@ -18,8 +18,12 @@ export class ScreenReaderLive {
     if (text === this.lastAnnounced || this.timer !== null) return
     this.lastAnnounced = text
     this.region.textContent = text
-    this.timer = setTimeout(() => { this.timer = null }, this.throttleMs)
+    this.timer = setTimeout(() => {
+      this.timer = null
+    }, this.throttleMs)
   }
 
-  get element(): HTMLElement { return this.region }
+  get element(): HTMLElement {
+    return this.region
+  }
 }

@@ -10,7 +10,7 @@ describe('phrases domain', () => {
   })
 
   it('all phrase ids are unique', () => {
-    const ids = PHRASES.map(p => p.id)
+    const ids = PHRASES.map((p) => p.id)
     const unique = new Set(ids)
     expect(unique.size).toBe(ids.length)
   })

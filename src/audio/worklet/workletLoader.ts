@@ -1,7 +1,7 @@
 export const loadCaptureWorklet = async (
   ctx: AudioContext,
   stream: MediaStream,
-  onFrame: (frame: Float32Array) => void,
+  onFrame: (frame: Float32Array) => void
 ): Promise<AudioWorkletNode> => {
   try {
     await ctx.audioWorklet.addModule('/worklet/capture-processor.js')

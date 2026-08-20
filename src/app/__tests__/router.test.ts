@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { describe, it, expect, afterEach, vi } from 'vitest'
 import { screenFromPath, pathForScreen, navigate, initRouter } from '../router'
 import { createStore } from '../store'
 import { initialState } from '../state'
@@ -50,7 +50,9 @@ describe('navigate', () => {
 })
 
 describe('initRouter', () => {
-  afterEach(() => { vi.unstubAllGlobals() })
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
 
   it('sets initial screen from current pathname', () => {
     vi.stubGlobal('location', { pathname: '/' })

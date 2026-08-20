@@ -24,7 +24,10 @@ export const hzToNoteName = (hz: number): string => {
   let minDiff = Infinity
   for (const note of NOTES) {
     const diff = Math.abs(note.hz - hz)
-    if (diff < minDiff) { minDiff = diff; closest = note }
+    if (diff < minDiff) {
+      minDiff = diff
+      closest = note
+    }
   }
   return closest?.name ?? '?'
 }

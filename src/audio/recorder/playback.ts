@@ -2,7 +2,7 @@ export function playSnapshot(
   snapshot: Float32Array<ArrayBufferLike>,
   sampleRate: number,
   audioCtx: AudioContext,
-  onEnded?: () => void,
+  onEnded?: () => void
 ): AudioBufferSourceNode {
   const buffer = audioCtx.createBuffer(1, snapshot.length, sampleRate)
   buffer.copyToChannel(snapshot as Float32Array<ArrayBuffer>, 0)

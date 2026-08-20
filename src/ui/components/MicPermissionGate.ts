@@ -10,7 +10,7 @@ export class MicPermissionGate {
 
   constructor(
     private readonly store: Store<AppState>,
-    private readonly onGranted: (stream: MediaStream) => void,
+    private readonly onGranted: (stream: MediaStream) => void
   ) {
     this.root = el('div', {
       class: 'view-card',
@@ -27,11 +27,13 @@ export class MicPermissionGate {
     if (state.micStatus === 'error' && state.micError) {
       const retryBtn = this.buildButton()
       this.root.replaceChildren(
-        el('p', { role: 'alert', style: 'color: var(--error); margin-bottom: 1rem;' },
+        el(
+          'p',
+          { role: 'alert', style: 'color: var(--error); margin-bottom: 1rem;' },
           el('span', { 'aria-hidden': 'true' }, '⚠ '),
-          state.micError.message,
+          state.micError.message
         ),
-        retryBtn,
+        retryBtn
       )
       retryBtn.focus()
       return
@@ -39,23 +41,23 @@ export class MicPermissionGate {
 
     if (state.micStatus === 'requesting') {
       this.root.replaceChildren(
-        el('p', { style: 'color: var(--text-muted);' }, t('gate.requesting')),
+        el('p', { style: 'color: var(--text-muted);' }, t('gate.requesting'))
       )
       return
     }
 
     this.root.replaceChildren(
       el('h1', { style: 'margin-bottom: 1rem; font-size: 1.1rem;' }, t('gate.title')),
-      el('p', { style: 'color: var(--text-muted); margin-bottom: 1.5rem;' },
-        t('gate.description')
-      ),
-      this.buildButton(),
+      el('p', { style: 'color: var(--text-muted); margin-bottom: 1.5rem;' }, t('gate.description')),
+      this.buildButton()
     )
   }
 
   private buildButton(): HTMLButtonElement {
     const btn = el('button', { class: 'btn btn--primary' }, t('gate.button'))
-    btn.addEventListener('click', () => { void this.handleClick() })
+    btn.addEventListener('click', () => {
+      void this.handleClick()
+    })
     return btn
   }
 
@@ -71,5 +73,7 @@ export class MicPermissionGate {
     }
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

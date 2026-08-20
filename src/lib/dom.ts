@@ -12,4 +12,6 @@ export const el = <K extends keyof HTMLElementTagNameMap>(
   return e
 }
 
-export const mount = (parent: Element, child: Element): void => { parent.append(child) }
+export const mount = (parent: Element, child: Element): void => {
+  parent.append(child)
+}

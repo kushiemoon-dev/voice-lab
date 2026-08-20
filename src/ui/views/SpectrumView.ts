@@ -19,15 +19,23 @@ export class SpectrumView {
   private resizeObserver: ResizeObserver | null = null
 
   constructor(private readonly engine: AudioEngine) {
-    this.canvas = el('canvas', { style: 'width:100%;display:block;border-radius:8px;', 'aria-hidden': 'true' })
+    this.canvas = el('canvas', {
+      style: 'width:100%;display:block;border-radius:8px;',
+      'aria-hidden': 'true',
+    })
     this.canvasWrap = el('div', { style: 'width:100%;' }, this.canvas)
     this.renderer = new SpectrumRenderer(this.canvas)
 
-    this.root = el('div', {},
-      el('p', { style: 'font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-3);' },
-        t('spectrum.description')),
+    this.root = el(
+      'div',
+      {},
+      el(
+        'p',
+        { style: 'font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-3);' },
+        t('spectrum.description')
+      ),
       this.canvasWrap,
-      this.liveRegion.element,
+      this.liveRegion.element
     )
   }
 
@@ -38,7 +46,7 @@ export class SpectrumView {
     this.resizeObserver = createResizeObserver(this.canvasWrap, (w) => {
       this.renderer.resize(w, 260)
     })
-    this.unsubFreq = this.engine.onFreqFrame(data => {
+    this.unsubFreq = this.engine.onFreqFrame((data) => {
       this.renderer.render(data)
       if (this.freqBinCount > 0) {
         let peakBin = 1
@@ -46,7 +54,7 @@ export class SpectrumView {
           if ((data[i] ?? -Infinity) > (data[peakBin] ?? -Infinity)) peakBin = i
         }
         if ((data[peakBin] ?? -Infinity) > SILENCE_DB) {
-          const peakHz = Math.round(peakBin * this.sampleRate / (2 * this.freqBinCount))
+          const peakHz = Math.round((peakBin * this.sampleRate) / (2 * this.freqBinCount))
           this.liveRegion.announce(`${peakHz} Hz`)
         }
       }
@@ -58,5 +66,7 @@ export class SpectrumView {
     this.resizeObserver?.disconnect()
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

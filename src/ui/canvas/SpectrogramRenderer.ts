@@ -1,12 +1,12 @@
 import { setupHiDpiCanvas } from './canvasUtils'
 
 const COLOR_STOPS = [
-  { t: 0.0,  r: 14,  g: 17,  b: 22  },
-  { t: 0.2,  r: 20,  g: 40,  b: 80  },
-  { t: 0.45, r: 91,  g: 206, b: 250 },
-  { t: 0.7,  r: 200, g: 220, b: 255 },
+  { t: 0.0, r: 14, g: 17, b: 22 },
+  { t: 0.2, r: 20, g: 40, b: 80 },
+  { t: 0.45, r: 91, g: 206, b: 250 },
+  { t: 0.7, r: 200, g: 220, b: 255 },
   { t: 0.85, r: 245, g: 169, b: 184 },
-  { t: 1.0,  r: 255, g: 255, b: 255 },
+  { t: 1.0, r: 255, g: 255, b: 255 },
 ]
 
 function interpColor(t: number): [number, number, number] {
@@ -71,7 +71,7 @@ export class SpectrogramRenderer {
       const normalized = Math.max(0, Math.min(1, (db + 90) / 90))
       const [r, g, b] = interpColor(normalized)
       const idx = row * 4
-      col.data[idx]     = r
+      col.data[idx] = r
       col.data[idx + 1] = g
       col.data[idx + 2] = b
       col.data[idx + 3] = 255

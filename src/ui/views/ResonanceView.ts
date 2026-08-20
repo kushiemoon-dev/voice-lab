@@ -28,37 +28,65 @@ export class ResonanceView {
 
   constructor(private readonly engine: AudioEngine) {
     this.apertureEl = el('span', {
-      style: 'color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: var(--space-1);',
+      style:
+        'color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: var(--space-1);',
     })
     this.brightnessEl = el('span', {
-      style: 'color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: var(--space-1);',
+      style:
+        'color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: var(--space-1);',
     })
-    this.statusEl = el('p', {
-      'aria-live': 'polite',
-      style: 'font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-4); font-style: italic;',
-    }, t('resonance.waiting'))
-
-    const apertureBlock = el('div', { style: 'margin-bottom: var(--space-4);' },
-      el('div', { style: 'font-size: 0.875rem; margin-bottom: var(--space-2);' }, t('resonance.aperture')),
-      this.apertureMeter.element,
-      this.apertureEl,
-    )
-    const brightnessBlock = el('div', { style: 'margin-bottom: var(--space-4);' },
-      el('div', { style: 'font-size: 0.875rem; margin-bottom: var(--space-2);' }, t('resonance.brightness')),
-      this.brightnessMeter.element,
-      this.brightnessEl,
+    this.statusEl = el(
+      'p',
+      {
+        'aria-live': 'polite',
+        style:
+          'font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-4); font-style: italic;',
+      },
+      t('resonance.waiting')
     )
 
-    this.root = el('div', {},
-      el('p', { style: 'font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-4); font-style: italic;' },
-        t('resonance.description'),
+    const apertureBlock = el(
+      'div',
+      { style: 'margin-bottom: var(--space-4);' },
+      el(
+        'div',
+        { style: 'font-size: 0.875rem; margin-bottom: var(--space-2);' },
+        t('resonance.aperture')
       ),
-      el('p', { style: 'font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-4);' },
-        t('resonance.holdVowel'),
+      this.apertureMeter.element,
+      this.apertureEl
+    )
+    const brightnessBlock = el(
+      'div',
+      { style: 'margin-bottom: var(--space-4);' },
+      el(
+        'div',
+        { style: 'font-size: 0.875rem; margin-bottom: var(--space-2);' },
+        t('resonance.brightness')
+      ),
+      this.brightnessMeter.element,
+      this.brightnessEl
+    )
+
+    this.root = el(
+      'div',
+      {},
+      el(
+        'p',
+        {
+          style:
+            'font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-4); font-style: italic;',
+        },
+        t('resonance.description')
+      ),
+      el(
+        'p',
+        { style: 'font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-4);' },
+        t('resonance.holdVowel')
       ),
       apertureBlock,
       brightnessBlock,
-      this.statusEl,
+      this.statusEl
     )
   }
 
@@ -66,11 +94,11 @@ export class ResonanceView {
     const sr = this.engine.getSampleRate()
     const binCount = this.engine.getFreqBinCount()
 
-    this.unsubFreq = this.engine.onFreqFrame(data => {
+    this.unsubFreq = this.engine.onFreqFrame((data) => {
       this.latestFreqData = data
     })
 
-    this.unsubFrame = this.engine.onFrame(frame => {
+    this.unsubFrame = this.engine.onFrame((frame) => {
       const raw = this.estimator.estimate(frame, sr)
       const hz = this.smoother.push(raw.hz ?? 0, raw.clarity)
 
@@ -118,5 +146,7 @@ export class ResonanceView {
     this.smoother.reset()
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }

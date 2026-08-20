@@ -3,11 +3,11 @@ import { NOTE_NAMES, hzToNoteName, NOTES } from '../noteFrequencies'
 
 describe('NOTES', () => {
   it('A4 = 440 Hz', () => {
-    const a4 = NOTES.find(n => n.name === 'A4')
+    const a4 = NOTES.find((n) => n.name === 'A4')
     expect(a4?.hz).toBeCloseTo(440, 1)
   })
   it('chaque note a un Hz > 0', () => {
-    NOTES.forEach(n => expect(n.hz).toBeGreaterThan(0))
+    NOTES.forEach((n) => expect(n.hz).toBeGreaterThan(0))
   })
 })
 

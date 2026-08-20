@@ -43,11 +43,18 @@ export function createAudioEngine(): AudioEngine {
   return {
     async start(stream) {
       // Re-entrancy guard: cancel previous loop and close old context first
-      if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null }
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+        rafId = null
+      }
       if (ctx) {
         source?.disconnect()
         await ctx.close().catch(() => {})
-        ctx = null; analyser = null; source = null; timeBuf = null; freqBuf = null
+        ctx = null
+        analyser = null
+        source = null
+        timeBuf = null
+        freqBuf = null
       }
       try {
         ctx = new AudioContext()
@@ -83,12 +90,16 @@ export function createAudioEngine(): AudioEngine {
 
     onFrame(cb) {
       callbacks.add(cb)
-      return () => { callbacks.delete(cb) }
+      return () => {
+        callbacks.delete(cb)
+      }
     },
 
     onFreqFrame(cb) {
       freqCallbacks.add(cb)
-      return () => { freqCallbacks.delete(cb) }
+      return () => {
+        freqCallbacks.delete(cb)
+      }
     },
 
     getSampleRate() {

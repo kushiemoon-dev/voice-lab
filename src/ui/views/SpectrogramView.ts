@@ -20,11 +20,17 @@ export class SpectrogramView {
     this.canvasWrap = el('div', { style: 'width:100%;' }, this.canvas)
     this.renderer = new SpectrogramRenderer(this.canvas)
 
-    this.root = el('div', {},
-      el('p', {
-        style: 'font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-3);',
-      }, t('spectrogram.description')),
-      this.canvasWrap,
+    this.root = el(
+      'div',
+      {},
+      el(
+        'p',
+        {
+          style: 'font-size:0.85rem;color:var(--text-muted);margin-bottom:var(--space-3);',
+        },
+        t('spectrogram.description')
+      ),
+      this.canvasWrap
     )
   }
 
@@ -33,7 +39,7 @@ export class SpectrogramView {
     this.resizeObserver = createResizeObserver(this.canvasWrap, (w) => {
       this.renderer.resize(w, 260)
     })
-    this.unsubFreq = this.engine.onFreqFrame(data => {
+    this.unsubFreq = this.engine.onFreqFrame((data) => {
       this.renderer.render(data)
     })
   }
@@ -43,5 +49,7 @@ export class SpectrogramView {
     this.resizeObserver?.disconnect()
   }
 
-  get element(): HTMLElement { return this.root }
+  get element(): HTMLElement {
+    return this.root
+  }
 }
