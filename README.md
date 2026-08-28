@@ -1,42 +1,42 @@
 # Voice Lab
 
-> Real-time voice training for trans & non-binary voices — free, open-source, and 100% local.
+> Real-time voice training for trans & non-binary voices: free, open-source, and 100% local.
 
 [![Tests](https://github.com/kushiemoon-dev/voice-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/kushiemoon-dev/voice-lab/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**[voice-lab.kushie.dev](https://voice-lab.kushie.dev)** — No account. No server. Nothing leaves your device.
+**[voice-lab.kushie.dev](https://voice-lab.kushie.dev)**: no account, no server, nothing leaves your device.
 
 ---
 
 ## What it does
 
-Voice Lab gives you real-time audio feedback to help explore, train, and understand your voice. It runs entirely in your browser using the Web Audio API — your microphone data never touches a server.
+Voice Lab gives you real-time audio feedback to help explore, train, and understand your voice. It runs entirely in your browser using the Web Audio API; your microphone data never touches a server.
 
 | Tool                    | What you get                                                                                                         |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **Pitch**               | Live pitch graph with band indicators for masculine, non-binary, and feminine ranges; scrolling history; target line |
-| **Tones**               | Reference notes and scales across your vocal range — useful for ear training                                         |
-| **Phrases**             | Practice sentences across 9 themes — with live pitch graph and recording so you can hear yourself back               |
-| **Record**              | Record, replay, and export as WAV — locally, nothing is sent anywhere                                                |
-| **Lab — Spectrogram**   | Time × frequency heatmap scrolling in real time                                                                      |
-| **Lab — Harmonics**     | FFT harmonic series visualisation                                                                                    |
-| **Lab — Voice Quality** | Jitter, shimmer, and HNR (harmonics-to-noise ratio) with qualitative interpretation                                  |
-| **Lab — Statistics**    | Session pitch stats: min, max, mean, range, dominant range, target %                                                 |
+| **Tones**               | Reference notes and scales across your vocal range, useful for ear training                                          |
+| **Phrases**             | Practice sentences across 9 themes, with live pitch graph and recording so you can hear yourself back                |
+| **Record**              | Record, replay, and export as WAV locally; nothing is sent anywhere                                                  |
+| **Lab: Spectrogram**    | Time × frequency heatmap scrolling in real time                                                                      |
+| **Lab: Harmonics**      | FFT harmonic series visualisation                                                                                    |
+| **Lab: Voice Quality**  | Jitter, shimmer, and HNR (harmonics-to-noise ratio) with qualitative interpretation                                  |
+| **Lab: Statistics**     | Session pitch stats: min, max, mean, range, dominant range, target %                                                 |
 
-Available in **English and French** — toggleable at any time, persisted to localStorage.
+Available in **English and French**, toggleable at any time, persisted to localStorage.
 
 ---
 
 ## Privacy
 
-- **No server** — all processing happens in your browser via the Web Audio API
-- **No account** — nothing to sign up for
-- **No tracking** — no analytics, no cookies, no third-party scripts
-- **No data retention** — recordings exist only in memory and are lost on page close
-- **HTTPS required** — microphone access is gated by the browser's permission model
+- **No server**: all processing happens in your browser via the Web Audio API
+- **No account**: nothing to sign up for
+- **No tracking**: no analytics, no cookies, no third-party scripts
+- **No data retention**: recordings exist only in memory and are lost on page close
+- **HTTPS required**: microphone access is gated by the browser's permission model
 
 > Voice Lab is a practice tool and does not replace guidance from a qualified speech therapist.
 
@@ -149,7 +149,7 @@ magick -background none assets/icons/icon.svg -define icon:auto-resize=16,32,48 
 
 ## Contributing
 
-Contributions are welcome — bug reports, accessibility improvements, new phrases, language translations, or DSP refinements.
+Contributions are welcome: bug reports, accessibility improvements, new phrases, language translations, or DSP refinements.
 
 1. Fork the repo and create a branch (`git checkout -b feat/your-feature`)
 2. Write tests first if you're touching analysis or audio code
@@ -162,4 +162,4 @@ This project is specifically built for trans and non-binary people. Contribution
 
 ## License
 
-[MIT](LICENSE) — free to use, modify, and redistribute.
+[MIT](LICENSE), free to use, modify, and redistribute.
