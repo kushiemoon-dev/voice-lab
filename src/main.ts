@@ -41,11 +41,11 @@ if ('serviceWorker' in navigator) {
           document.body.append(toast)
         },
         onOfflineReady() {
-          // App ready to work offline — no user-visible notification needed
+          // App ready to work offline, no user-visible notification needed
         },
       })
     })
     .catch(() => {
-      // SW registration failed silently — app still works online
+      // SW registration failed silently; app still works online
     })
 }

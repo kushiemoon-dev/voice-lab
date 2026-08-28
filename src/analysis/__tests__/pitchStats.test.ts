@@ -64,7 +64,7 @@ describe('PitchStatsAccumulator', () => {
   it('f0RangeSemitones ~ 12 demi-tons pour une octave', () => {
     const acc = new PitchStatsAccumulator()
     acc.push(220) // A3
-    acc.push(440) // A4 — exactement 12 demi-tons plus haut
+    acc.push(440) // A4, exactement 12 demi-tons plus haut
     const s = acc.getStats()
     expect(s.f0RangeSemitones).toBe(12)
   })

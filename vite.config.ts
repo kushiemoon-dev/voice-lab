@@ -70,7 +70,7 @@ export default defineConfig({
         enabled: false,
       },
       manifest: {
-        name: 'Voice Lab — Voice Training',
+        name: 'Voice Lab: Voice Training',
         short_name: 'Voice Lab',
         description:
           'Free, 100% local voice training tool for trans and non-binary voices. Nothing leaves your device.',
@@ -118,7 +118,7 @@ export default defineConfig({
         // Entry point & app bootstrap
         'src/main.ts',
         'src/app/App.ts',
-        // Web Audio API — not available in happy-dom
+        // Web Audio API: not available in happy-dom
         'src/audio/AudioEngine.ts',
         'src/audio/featureDetect.ts',
         'src/audio/microphone.ts',
@@ -127,10 +127,10 @@ export default defineConfig({
         'src/audio/recorder/playback.ts',
         'src/audio/tones/**',
         'src/audio/worklet/**',
-        // Canvas 2D API — not available in happy-dom
+        // Canvas 2D API: not available in happy-dom
         'src/ui/canvas/canvasUtils.ts',
         'src/ui/canvas/*Renderer.ts',
-        // UI views & layout — DOM-heavy, integration-tested elsewhere
+        // UI views & layout: DOM-heavy, integration-tested elsewhere
         'src/ui/views/**',
         'src/ui/layout/**',
         'src/ui/components/**',

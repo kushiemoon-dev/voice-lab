@@ -13,7 +13,7 @@ export interface PitchStats {
 }
 
 export class PitchStatsAccumulator {
-  // O(1) accumulators — no unbounded array; safe on long sessions
+  // O(1) accumulators, no unbounded array; safe on long sessions
   private count = 0
   private sum = 0
   private min = Infinity

@@ -45,7 +45,7 @@ export class PitchGraphRenderer {
     const innerW = W - PAD_LEFT - PAD_RIGHT
     clearCanvas(ctx, W, H, BG_COLOR)
 
-    // 1. Axe Y gradué — lignes de grille horizontales avec gouttières
+    // 1. Axe Y gradué : lignes de grille horizontales avec gouttières
     ctx.save()
     ctx.font = '10px system-ui, sans-serif'
     for (const hz of GRID_HZ) {
@@ -113,7 +113,7 @@ export class PitchGraphRenderer {
       ctx.restore()
     }
 
-    // 4. Courbe de pitch — interpolation quadratique via points milieux
+    // 4. Courbe de pitch : interpolation quadratique via points milieux
     // X aligné à droite sur la capacité fixe : le point le plus récent est
     // toujours au bord droit ; les points entrent par la droite et défilent
     // vers la gauche à vitesse constante dès le 1er point (pas de rescale).

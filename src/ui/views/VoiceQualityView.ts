@@ -25,7 +25,7 @@ const LEVEL_COLOR: Record<QualityLevel, string> = {
   bad: 'var(--error)',
 }
 
-// Résout la clé t() à l'appel (pas à l'import) — reflète la langue courante
+// Résout la clé t() à l'appel (pas à l'import), reflète la langue courante
 function levelKey(
   level: QualityLevel
 ): 'quality.level.normal' | 'quality.level.borderline' | 'quality.level.high' {
@@ -146,7 +146,7 @@ export class VoiceQualityView {
       if (hz === null) return
       const f0 = this.smoother.push(hz, clarity)
       if (f0 === null) return
-      // Throttle DSP lourd — le display est mis à jour par setInterval de toute façon
+      // Throttle DSP lourd, le display est mis à jour par setInterval de toute façon
       const now = performance.now()
       if (now - this.lastComputeAt >= COMPUTE_INTERVAL_MS) {
         this.lastComputeAt = now

@@ -1,4 +1,4 @@
-// History API router — two screens: 'landing' (/) and 'tool' (/app).
+// History API router, two screens: 'landing' (/) and 'tool' (/app).
 // location.pathname is the source of truth; store state is derived from it.
 
 import type { Store } from './store'

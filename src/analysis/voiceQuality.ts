@@ -6,7 +6,7 @@ export interface VoiceQualityMetrics {
 }
 
 // Détecte les passages à zéro montants avec interpolation linéaire sub-sample.
-// Impose un espacement minimal de 0.5 période — élimine les crossings parasites
+// Impose un espacement minimal de 0.5 période, élimine les crossings parasites
 // dus aux harmoniques/bruit. Retourne des positions fractionnaires (float samples).
 function risingZeroCrossings(frame: Float32Array, f0Hz: number, sampleRate: number): number[] {
   const minSpacing = (0.5 * sampleRate) / f0Hz
@@ -67,7 +67,7 @@ export function computeVoiceQuality(
 
   // --- HNR (autocorrélation) ---
   // Formule : ac = rLag/r0 (coefficient d'autocorrélation normalisé)
-  // HNR = 10*log10(ac/(1-ac)) — valeur élevée pour voix pures, null si signal trop faible.
+  // HNR = 10*log10(ac/(1-ac)): valeur élevée pour voix pures, null si signal trop faible.
   const lag = Math.round(sampleRate / f0Hz)
   let r0 = 0,
     rLag = 0

@@ -21,7 +21,7 @@ export function createAudioEngine(): AudioEngine {
   let analyser: AnalyserNode | null = null
   let source: MediaStreamAudioSourceNode | null = null
   let rafId: number | null = null
-  // Pre-allocated buffers — valid only during the RAF callback; callers must not retain across ticks
+  // Pre-allocated buffers: valid only during the RAF callback; callers must not retain across ticks
   let timeBuf: Float32Array<ArrayBuffer> | null = null
   let freqBuf: Float32Array<ArrayBuffer> | null = null
   const callbacks = new Set<FrameCallback>()

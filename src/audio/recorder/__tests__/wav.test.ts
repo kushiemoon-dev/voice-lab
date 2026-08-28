@@ -36,7 +36,7 @@ describe('encodeWav', () => {
     expect(v.getUint32(24, true)).toBe(22050)
   })
 
-  it('PCM mono 16 bits — format audio code = 1', () => {
+  it('PCM mono 16 bits : format audio code = 1', () => {
     const buf = encodeWav(new Float32Array(10), SR)
     const v = new DataView(buf)
     expect(v.getUint16(20, true)).toBe(1) // PCM

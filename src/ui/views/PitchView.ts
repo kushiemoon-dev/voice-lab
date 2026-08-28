@@ -50,7 +50,7 @@ export class PitchView {
     this.liveRegion = new ScreenReaderLive(2000)
     this.renderer = new PitchGraphRenderer(this.canvas)
 
-    // Readout live — état idle par défaut
+    // Readout live, état idle par défaut
     this.hzEl = el('span', { class: 'pitch-readout__hz' }, '—')
     this.noteEl = el('span', { class: 'pitch-readout__note' }, '')
     this.idleEl = el('span', { class: 'pitch-readout__idle' }, t('pitch.idle'))
@@ -59,11 +59,11 @@ export class PitchView {
     // Select cible
     const targetOptions = [
       { label: t('pitch.targetNone'), value: 'none' },
-      { label: '165 Hz — E3', value: '165' },
-      { label: '180 Hz — F#3', value: '180' },
-      { label: '200 Hz — G3', value: '200' },
-      { label: '220 Hz — A3', value: '220' },
-      { label: '250 Hz — B3', value: '250' },
+      { label: '165 Hz (E3)', value: '165' },
+      { label: '180 Hz (F#3)', value: '180' },
+      { label: '200 Hz (G3)', value: '200' },
+      { label: '220 Hz (A3)', value: '220' },
+      { label: '250 Hz (B3)', value: '250' },
     ] as const
     const targetSelect = createSelect(
       targetOptions,

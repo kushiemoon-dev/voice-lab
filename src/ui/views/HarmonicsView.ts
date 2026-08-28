@@ -81,7 +81,7 @@ export class HarmonicsView {
       if (hz !== null && this.latestFreqData !== null) {
         this.latestHarmonics = extractHarmonics(this.latestFreqData, hz, sr, binCount)
         this.renderer.render(this.latestFreqData, this.latestHarmonics, sr, binCount)
-        this.infoEl.textContent = `${t('harmonics.fundamental')} : ${Math.round(hz)} Hz — ${this.latestHarmonics.length} ${t('harmonics.detected')}`
+        this.infoEl.textContent = `${t('harmonics.fundamental')} : ${Math.round(hz)} Hz, ${this.latestHarmonics.length} ${t('harmonics.detected')}`
       } else if (this.latestFreqData !== null) {
         this.renderer.render(this.latestFreqData, [], sr, binCount)
         this.infoEl.textContent = t('harmonics.holdVowel')

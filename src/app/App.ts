@@ -90,7 +90,7 @@ export class App {
         void this.engine.stop()
 
         this.shell.setContent(this.landingView.element)
-        // setState last — with prev updated before dispatch, re-entrant call sees screenChanged=false
+        // setState last: with prev updated before dispatch, re-entrant call sees screenChanged=false
         this.store.setState({ micStatus: 'idle', micError: null })
       }
       return
@@ -99,7 +99,7 @@ export class App {
     // screen === 'tool'
     if (state.micStatus !== 'granted') {
       // Only rebuild gate when: entering tool, losing mic access (granted→non-granted), or initial render.
-      // Do NOT rebuild on idle→requesting or requesting→error — the gate owns those transitions.
+      // Do NOT rebuild on idle→requesting or requesting→error; the gate owns those transitions.
       const lostAccess = micChanged && prev.micStatus === 'granted'
       if (screenChanged || lostAccess || !this.gateActive) {
         if (this.currentView?.destroy) this.currentView.destroy()
@@ -119,7 +119,7 @@ export class App {
       return
     }
 
-    // Mic granted — show/update tool view
+    // Mic granted: show/update tool view
     this.gateActive = false
     if ((screenChanged || micChanged || modeChanged) && this.currentStream) {
       this.showView(state.activeMode, this.currentStream)

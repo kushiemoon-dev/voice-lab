@@ -26,7 +26,7 @@ const en = {
     'Built for trans and non-binary voice work, as a complement to speech-therapy sessions.',
   'landing.cta': 'Get started',
   'landing.privacy.title': 'Your voice never leaves your device',
-  'landing.privacy.local': '100% local — nothing is sent anywhere',
+  'landing.privacy.local': '100% local: nothing is sent anywhere',
   'landing.privacy.noRecord': 'Nothing is recorded or kept',
   'landing.privacy.noTrack': 'No account, no tracking, no ads',
   'landing.privacy.free': 'Free and open-source',
@@ -34,14 +34,14 @@ const en = {
   'landing.features.pitch': 'Visualise your voice pitch live.',
   'landing.features.tones': 'Reference notes and scales for your range.',
   'landing.features.phrases': 'Practice sentences to read aloud.',
-  'landing.features.record': 'Record and replay locally — nothing is sent.',
+  'landing.features.record': 'Record and replay locally; nothing is sent.',
   'landing.features.labo': 'Spectrogram, harmonics and voice quality analysis.',
 
   // Header
   'header.home': '← Home',
 
   // Footer
-  'footer.privacy': '100% local — no data leaves your device.',
+  'footer.privacy': '100% local: no data leaves your device.',
   'footer.disclaimer': 'A practice tool; it does not replace speech therapy.',
   'footer.openSource': 'Open-source on GitHub',
 
@@ -139,10 +139,10 @@ const en = {
   'tones.stop': '⏹ Stop',
 
   // Labo sub-views
-  'spectrum.description': 'Real-time frequency spectrum — 0 to 8,000 Hz',
+  'spectrum.description': 'Real-time frequency spectrum, 0 to 8,000 Hz',
   'spectrogram.description':
-    'Time × frequency map — colour = intensity (black → blue → pink → white)',
-  'harmonics.description': 'Harmonic structure — pink = fundamental (H1), blue = harmonics',
+    'Time × frequency map: colour = intensity (black → blue → pink → white)',
+  'harmonics.description': 'Harmonic structure: pink = fundamental (H1), blue = harmonics',
   'harmonics.holdVowel': 'Hold a vowel to see the harmonics.',
   'harmonics.fundamental': 'Fundamental',
   'harmonics.detected': 'harmonics detected',
@@ -188,7 +188,7 @@ const en = {
   'intonation.flat': 'fairly flat',
   'intonation.melodic': 'melodic',
   'intonation.varied': 'very varied',
-  'intonation.context': 'No ideal value — context and emotion shape intonation.',
+  'intonation.context': 'No ideal value; context and emotion shape intonation.',
   'intonation.waiting': 'Speak to measure intonation',
 
   // Volume (PitchView)
@@ -200,7 +200,7 @@ const en = {
 
   // Resonance / Formants (LaboView)
   'labo.tab.resonance': 'Resonance',
-  'resonance.description': 'Experimental — most reliable on sustained vowels.',
+  'resonance.description': 'Experimental, most reliable on sustained vowels.',
   'resonance.holdVowel': 'Hold a vowel (A, E, I, O, U) for a stable reading.',
   'resonance.aperture': 'Mouth opening',
   'resonance.brightness': 'Resonance',
@@ -240,7 +240,7 @@ const fr: Record<keyof typeof en, string> = {
     "Conçu pour le travail vocal trans et non-binaire, en complément des séances d'orthophonie.",
   'landing.cta': 'Commencer',
   'landing.privacy.title': 'Votre voix ne quitte jamais votre appareil',
-  'landing.privacy.local': "100% local — rien n'est envoyé nulle part",
+  'landing.privacy.local': "100% local : rien n'est envoyé nulle part",
   'landing.privacy.noRecord': "Rien n'est enregistré ni conservé",
   'landing.privacy.noTrack': 'Pas de compte, pas de tracking, pas de publicités',
   'landing.privacy.free': 'Gratuit et open-source',
@@ -248,14 +248,14 @@ const fr: Record<keyof typeof en, string> = {
   'landing.features.pitch': 'Visualisez votre fréquence vocale en direct.',
   'landing.features.tones': 'Notes de référence et gammes pour votre registre.',
   'landing.features.phrases': "Phrases d'exercice à lire à voix haute.",
-  'landing.features.record': "Enregistrez et écoutez localement — rien n'est envoyé.",
+  'landing.features.record': "Enregistrez et écoutez localement ; rien n'est envoyé.",
   'landing.features.labo': 'Spectrogramme, harmoniques et analyse qualité vocale.',
 
   // Header
   'header.home': '← Accueil',
 
   // Footer
-  'footer.privacy': '100% local — aucune donnée ne quitte votre appareil.',
+  'footer.privacy': '100% local : aucune donnée ne quitte votre appareil.',
   'footer.disclaimer': "Un outil d'exercice ; il ne remplace pas un suivi orthophonique.",
   'footer.openSource': 'Open-source sur GitHub',
 
@@ -354,10 +354,10 @@ const fr: Record<keyof typeof en, string> = {
   'tones.stop': '⏹ Arrêter',
 
   // Labo sub-views
-  'spectrum.description': 'Spectre de fréquences en temps réel — 0 à 8 000 Hz',
+  'spectrum.description': 'Spectre de fréquences en temps réel, 0 à 8 000 Hz',
   'spectrogram.description':
-    'Carte temps × fréquence — couleur = intensité (noir → bleu → rose → blanc)',
-  'harmonics.description': 'Structure harmonique — rose = fondamentale (H1), bleu = harmoniques',
+    'Carte temps × fréquence : couleur = intensité (noir → bleu → rose → blanc)',
+  'harmonics.description': 'Structure harmonique : rose = fondamentale (H1), bleu = harmoniques',
   'harmonics.holdVowel': 'Tenez une voyelle pour voir les harmoniques.',
   'harmonics.fundamental': 'Fondamentale',
   'harmonics.detected': 'harmoniques détectées',
@@ -403,7 +403,7 @@ const fr: Record<keyof typeof en, string> = {
   'intonation.flat': 'plutôt plate',
   'intonation.melodic': 'mélodieuse',
   'intonation.varied': 'très variée',
-  'intonation.context': "Pas de valeur idéale — le contexte et l'émotion font tout.",
+  'intonation.context': "Pas de valeur idéale ; le contexte et l'émotion font tout.",
   'intonation.waiting': "Parlez pour mesurer l'intonation",
 
   // Volume (PitchView)
@@ -415,7 +415,7 @@ const fr: Record<keyof typeof en, string> = {
 
   // Resonance / Formants (LaboView)
   'labo.tab.resonance': 'Résonance',
-  'resonance.description': 'Prototype exploratoire — plus fiable sur les voyelles tenues.',
+  'resonance.description': 'Prototype exploratoire, plus fiable sur les voyelles tenues.',
   'resonance.holdVowel': 'Maintenez une voyelle (A, E, I, O, U) pour une lecture stable.',
   'resonance.aperture': 'Ouverture de bouche',
   'resonance.brightness': 'Résonance',

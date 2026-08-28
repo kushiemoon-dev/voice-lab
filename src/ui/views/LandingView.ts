@@ -3,7 +3,7 @@ import { t } from '../../i18n/strings'
 import type { StringKey } from '../../i18n/strings'
 import { MODES } from '../../app/modes'
 
-// Descriptions for each mode feature card — English copy via t()
+// Descriptions for each mode feature card, English copy via t()
 const MODE_DESCRIPTIONS: Record<string, string> = {
   pitch: t('landing.features.pitch'),
   tones: t('landing.features.tones'),
@@ -50,7 +50,7 @@ export class LandingView {
       privacyList
     )
 
-    // Feature grid — 5 cards from MODES
+    // Feature grid: 5 cards from MODES
     const featureCards = MODES.map((mode) =>
       el(
         'div',

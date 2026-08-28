@@ -18,7 +18,7 @@ export class TonesView {
     const select = createSelect(
       DISPLAY_NOTES.map((n) => ({
         value: String(n.hz),
-        label: `${n.name} — ${Math.round(n.hz)} Hz`,
+        label: `${n.name} (${Math.round(n.hz)} Hz)`,
       })),
       (val) => {
         this.currentHz = parseFloat(val)
@@ -63,7 +63,7 @@ export class TonesView {
       this.player.stop()
       this.playBtn.textContent = t('tones.play')
     } else {
-      // Réutilise le contexte audio du moteur — évite d'ouvrir un 2e AudioContext
+      // Réutilise le contexte audio du moteur, évite d'ouvrir un 2e AudioContext
       this.player.play(this.currentHz, this.engine.getContext() ?? undefined)
       this.playBtn.textContent = t('tones.stop')
     }

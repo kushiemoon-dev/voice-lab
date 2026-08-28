@@ -42,7 +42,7 @@ describe('computeVoiceQuality', () => {
     expect(m.valid).toBe(false)
   })
 
-  it('HNR non-null pour voix pure (fix bug E1 — ancienne formule rLag < r0)', () => {
+  it('HNR non-null pour voix pure (fix bug E1, ancienne formule rLag < r0)', () => {
     // Pour un sinus parfait, rLag ≈ r0 → ancienne formule renvoyait null
     const frame = sineWave(150, 8000, 0.5)
     const m = computeVoiceQuality(frame, 150, 8000)

@@ -11,7 +11,7 @@ describe('createStore', () => {
     store.setState({ count: 5 })
     expect(store.getState().count).toBe(5)
   })
-  it("setState est immuable — ne mute pas l'objet précédent", () => {
+  it("setState est immuable : ne mute pas l'objet précédent", () => {
     const store = createStore({ count: 0 })
     const before = store.getState()
     store.setState({ count: 99 })

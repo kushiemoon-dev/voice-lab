@@ -17,7 +17,7 @@ export const loadCaptureWorklet = async (
   }
 
   source.connect(workletNode)
-  // Ne pas connecter à destination — on veut juste capturer, pas reproduire
+  // Ne pas connecter à destination, on veut juste capturer, pas reproduire
 
   return workletNode
 }
