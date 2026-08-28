@@ -1,3 +1,9 @@
+<div align="center">
+
+<img src=".github/banner.webp" alt="Voice Lab" width="600">
+
+</div>
+
 # Voice Lab
 
 > Real-time voice training for trans & non-binary voices: free, open-source, and 100% local.
