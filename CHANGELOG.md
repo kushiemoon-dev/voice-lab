@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.1 (2026-09-23)
+
+### Fixes
+- Resolved 8 Dependabot alerts (3 critical) in dev dependencies: `vite` (server.fs.deny bypass, launch-editor NTLMv2 hash disclosure, path traversal in optimized deps map handling), `vitest` (UI server arbitrary file read/execute), `happy-dom` (VM context escape RCE, server-side script execution, cross-origin fetch credential leak), and `esbuild` (dev server allowed any website to read responses).
+- Bumped `vitest` to v5 and updated transitive dependencies (`browserslist`, `fast-uri`, `baseline-browser-mapping`, `brace-expansion`, `postcss`) to resolve the remaining npm audit advisories, including a `nanoid` infinite-loop advisory (dev dependency only).
+- Unified the project banner background color.
+
+### Internal
+- CI now deploys on version tags instead of every push to main.
+- Dead code removed (unused `releaseMicrophone` export, `NoteName` type, and the `volumeStats` module).
+- MIT LICENSE added; `nvmrc`/`engines` and eslint/prettier tooling added.
+
 ## v0.2.0 (2026-08-28)
 
 ### Features
