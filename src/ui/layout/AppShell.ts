@@ -3,7 +3,9 @@ import { TabBar } from './TabBar'
 import type { Store } from '../../app/store'
 import type { AppState } from '../../app/state'
 import { navigate } from '../../app/router'
-import { t, getLang, setLang } from '../../i18n/strings'
+import { t, getLang, setLang, type Lang } from '../../i18n/strings'
+
+const LANG_CYCLE: Lang[] = ['en', 'fr', 'ko']
 
 export class AppShell {
   private readonly root: HTMLElement
@@ -18,13 +20,17 @@ export class AppShell {
     this.homeBtn = el('button', { class: 'header__home' }, t('header.home')) as HTMLButtonElement
     this.homeBtn.addEventListener('click', () => navigate(store, 'landing'))
 
+    const nextLang = (): Lang => {
+      const idx = LANG_CYCLE.indexOf(getLang())
+      return LANG_CYCLE[(idx + 1) % LANG_CYCLE.length] ?? 'en'
+    }
     const langBtn = el(
       'button',
       { class: 'lang-toggle', 'aria-label': t('a11y.switchLanguage') },
-      getLang() === 'en' ? 'FR' : 'EN'
+      nextLang().toUpperCase()
     ) as HTMLButtonElement
     langBtn.addEventListener('click', () => {
-      setLang(getLang() === 'en' ? 'fr' : 'en')
+      setLang(nextLang())
       location.reload()
     })
 

@@ -1,4 +1,4 @@
-export type Lang = 'en' | 'fr'
+export type Lang = 'en' | 'fr' | 'ko'
 
 const en = {
   // App-level
@@ -175,7 +175,7 @@ const en = {
 
   // Accessibility
   'a11y.skipToContent': 'Skip to content',
-  'a11y.switchLanguage': 'Switch to French',
+  'a11y.switchLanguage': 'Switch language',
   'a11y.nav': 'Navigation',
   'a11y.modes': 'Modes',
 
@@ -390,7 +390,7 @@ const fr: Record<keyof typeof en, string> = {
 
   // Accessibility
   'a11y.skipToContent': 'Aller au contenu',
-  'a11y.switchLanguage': 'Passer en anglais',
+  'a11y.switchLanguage': 'Changer de langue',
   'a11y.nav': 'Navigation',
   'a11y.modes': 'Modes',
 
@@ -428,13 +428,225 @@ const fr: Record<keyof typeof en, string> = {
   'resonance.waiting': 'Maintenez une voyelle…',
 }
 
+const ko: Record<keyof typeof en, string> = {
+  // App-level
+  'app.title': 'Voice Lab',
+  'app.tagline': '트랜스·논바이너리 목소리를 위한 실시간 음성 훈련',
+  'app.unsupported': '사용 중인 브라우저가 필요한 오디오 API를 지원하지 않아요.',
+  'app.unsupportedHint': '최신 판의 Chrome, Edge 또는 Firefox를 HTTPS로 사용해 주세요.',
+
+  // Navigation
+  'nav.pitch': '피치',
+  'nav.tones': '기준음',
+  'nav.phrases': '문장',
+  'nav.record': '녹음',
+  'nav.labo': '랩',
+
+  // Mic gate
+  'gate.title': '마이크 접근 권한이 필요해요',
+  'gate.description': 'Voice Lab이 목소리를 실시간으로 분석해요. 녹음하거나 저장하지 않아요.',
+  'gate.button': '🎙 마이크 허용',
+  'gate.requesting': '권한을 요청하는 중이에요…',
+
+  // Landing page
+  'landing.hero.tagline': '브라우저에서 바로 목소리를 실시간으로 훈련해 보세요.',
+  'landing.hero.audience':
+    '트랜스·논바이너리 음성 워크를 위해 만들어졌으며, 음성 치료 세션을 보완하는 도구예요.',
+  'landing.cta': '시작하기',
+  'landing.privacy.title': '목소리는 기기를 절대 떠나지 않아요',
+  'landing.privacy.local': '100% 로컬: 아무것도 전송되지 않아요',
+  'landing.privacy.noRecord': '아무것도 녹음하거나 보관하지 않아요',
+  'landing.privacy.noTrack': '계정도, 추적도, 광고도 없어요',
+  'landing.privacy.free': '자유 오픈 소스',
+  'landing.features.title': '기능',
+  'landing.features.pitch': '목소리 피치를 실시간으로 확인해 보세요.',
+  'landing.features.tones': '내 음역대에 맞춘 기준음과 음계.',
+  'landing.features.phrases': '소리 내어 읽는 연습 문장.',
+  'landing.features.record': '로컬에서 녹음하고 다시 들을 수 있어요. 아무것도 전송되지 않아요.',
+  'landing.features.labo': '스펙트로그램, 배음, 음질 분석.',
+
+  // Header
+  'header.home': '← 홈',
+
+  // Footer
+  'footer.privacy': '100% 로컬: 데이터는 기기를 떠나지 않아요.',
+  'footer.disclaimer': '연습 도구예요. 음성 치료를 대체하지 않아요.',
+  'footer.openSource': 'GitHub에서 오픈 소스로 공개돼요',
+
+  // Pitch view
+  'pitch.title': '피치',
+  'pitch.idle': '말하면 피치가 표시돼요',
+  'pitch.target': '기준:',
+  'pitch.targetNone': '없음',
+  'pitch.band.low': '저음 (60–150\u00a0Hz)',
+  'pitch.band.mid': '중음 (150–250\u00a0Hz)',
+  'pitch.band.high': '고음 (250–500\u00a0Hz)',
+  'pitch.volume': '음량',
+  'pitch.targetLabel': '주파수 기준',
+
+  // Record view
+  'record.privacy': '녹음은 기기를 절대 떠나지 않아요. RAM에만 보관돼요.',
+  'record.listen': '다시 듣기',
+  'record.listenStop': '정지',
+  'record.clear': '지우기',
+  'record.status.ready': '준비됨',
+  'record.title': '녹음',
+  'record.status.initializing': '마이크를 기다리는 중…',
+  'record.audioUnavailable': '오디오 컨텍스트를 사용할 수 없어요',
+  'record.status.progress': '녹음 중',
+  'record.status.cleared': '녹음이 지워졌어요',
+  'record.start': '⏺ 녹음',
+  'record.stop': '⏹ 정지',
+  'record.recorded': '녹음됨',
+
+  // Labo view
+  'labo.title': '음향 분석 랩',
+  'labo.tab.spectrum': '스펙트럼',
+  'labo.tab.spectrogram': '스펙트로그램',
+  'labo.tab.harmonics': '배음',
+  'labo.tab.stats': '통계',
+  'labo.tab.quality': '음질',
+  'labo.navLabel': '랩 분석 화면',
+
+  // Stats
+  'stats.reset': '초기화',
+  'stats.noData': '말하면 통계 수집이 시작돼요.',
+  'stats.title': '세션 통계',
+  'stats.description': '세션 동안 말하면 통계가 쌓여요.',
+  'stats.min': '최소',
+  'stats.max': '최대',
+  'stats.mean': '평균',
+  'stats.range': '범위',
+  'stats.dominant': '주요 음역대',
+  'stats.frames': '분석된 프레임',
+
+  // Voice quality
+  'quality.title': '음질',
+  'quality.jitter': '지터',
+  'quality.shimmer': '시머',
+  'quality.hnr': 'HNR',
+  'quality.sustainedVowel': '안정적인 측정을 위해 모음을 길게 유지해 주세요.',
+  'quality.waiting': '음성 신호를 기다리는 중…',
+  'quality.normal': '음질이 정상 범위 안에 있어요.',
+  'quality.issues': '교란이 감지됐어요',
+  'quality.warnings': '경계선 수치',
+  'quality.monitor': '계속 관찰해 주세요.',
+  'quality.level.normal': '✓ 정상',
+  'quality.level.borderline': '⚠ 경계선',
+  'quality.level.high': '✗ 높음',
+  'quality.level.low': '✗ 낮음',
+
+  // PWA update toast
+  'pwa.updateAvailable': '새 판이 있어요.',
+  'pwa.reload': '새로 고침',
+
+  // Error messages
+  'error.micPermissionDenied':
+    '마이크 접근이 거부됐어요. 주소창의 마이크 아이콘을 눌러 허용해 주세요.',
+  'error.micNoDevice': '마이크가 감지되지 않아요. 연결한 뒤 다시 시도해 주세요.',
+  'error.micInsecureContext': '마이크를 사용하려면 HTTPS(또는 localhost)로 페이지를 불러와야 해요.',
+  'error.micUnsupportedBrowser':
+    '사용 중인 브라우저가 마이크 접근을 지원하지 않아요. 최신 판의 Chrome, Firefox 또는 Edge를 사용해 주세요.',
+  'error.micUnknown': '마이크 접근 중 예기치 못한 오류가 발생했어요. 다시 시도해 주세요.',
+
+  // Phrases view
+  'phrases.title': '읽기 문장',
+  'phrases.subtitle': '이 문장들을 소리 내어 읽고 억양 곡선을 살펴보세요.',
+  'phrases.theme': '테마',
+  'phrases.prev': '← 이전',
+  'phrases.next': '다음 →',
+  'phrases.random': '무작위',
+
+  // Tones view
+  'tones.title': '기준음',
+  'tones.description': '음을 하나 고르고 따라 해 보세요. 피치 그래프에 음이 맞는지 표시돼요.',
+  'tones.selectPlaceholder': '음 선택',
+  'tones.play': '▶ 재생',
+  'tones.stop': '⏹ 정지',
+
+  // Labo sub-views
+  'spectrum.description': '실시간 주파수 스펙트럼, 0~8,000\u00a0Hz',
+  'spectrogram.description': '시간 × 주파수 지도: 색 = 세기 (검정 → 파랑 → 분홍 → 흰색)',
+  'harmonics.description': '배음 구조: 분홍 = 기본음(H1), 파랑 = 배음',
+  'harmonics.holdVowel': '배음을 보려면 모음을 길게 유지해 주세요.',
+  'harmonics.fundamental': '기본음',
+  'harmonics.detected': '개의 배음이 감지됐어요',
+
+  // Phrases counter prefix
+  'phrases.counter': '문장',
+
+  // Voice quality interpretation fragments
+  'quality.issue.highJitter': '높은 지터',
+  'quality.issue.highShimmer': '높은 시머',
+  'quality.issue.lowHNR': '낮은 HNR',
+  'quality.warning.borderlineJitter': '경계선 지터',
+  'quality.warning.borderlineShimmer': '경계선 시머',
+  'quality.warning.borderlineHNR': '경계선 HNR',
+
+  // Record export
+  'record.export': '⬇ WAV',
+  'record.workletError': '녹음을 사용할 수 없어요: 오디오 워크릿을 불러오지 못했어요.',
+
+  // Theme labels
+  'theme.general': '일반',
+  'theme.questions': '질문',
+  'theme.douceur': '부드러운 목소리',
+  'theme.quotidien': '일상',
+  'theme.respiration': '호흡 조절',
+  'theme.nature': '자연',
+  'theme.emotions': '감정',
+  'theme.histoires': '짧은 이야기',
+  'theme.virelangues': '혀 꼬인 말',
+
+  // Accessibility
+  'a11y.skipToContent': '본문으로 건너뛰기',
+  'a11y.switchLanguage': '언어 바꾸기',
+  'a11y.nav': '탐색',
+  'a11y.modes': '모드',
+
+  // Record export filename
+  'record.exportFilename': 'record.wav',
+
+  // Intonation (PhrasesView)
+  'intonation.rangeLabel': '억양 범위',
+  'intonation.semitones': '반음',
+  'intonation.flat': '억양 변화가 적어요',
+  'intonation.melodic': '멜로디가 있어요',
+  'intonation.varied': '변화가 아주 풍부해요',
+  'intonation.context': '정해진 이상적인 수치는 없어요. 상황과 감정에 따라 억양이 달라져요.',
+  'intonation.waiting': '말하면 억양을 측정해요',
+
+  // Volume (PitchView)
+  'volume.level.verysoft': '아주 작게',
+  'volume.level.soft': '작게',
+  'volume.level.moderate': '보통',
+  'volume.level.loud': '크게',
+  'volume.level.veryloud': '아주 크게',
+
+  // Resonance / Formants (LaboView)
+  'labo.tab.resonance': '공명',
+  'resonance.description': '실험적 기능이에요. 모음을 길게 유지할 때 가장 정확해요.',
+  'resonance.holdVowel': '안정적인 측정을 위해 모음(A, E, I, O, U)을 길게 유지해 주세요.',
+  'resonance.aperture': '입 벌림',
+  'resonance.brightness': '공명',
+  'resonance.open': '열림',
+  'resonance.mid': '반열림',
+  'resonance.closed': '닫힘',
+  'resonance.bright': '밝음',
+  'resonance.neutral': '중립',
+  'resonance.dark': '어두움',
+  'resonance.waiting': '모음을 길게 유지해 주세요…',
+}
+
 export type StringKey = keyof typeof en
 
-const catalogs: Record<Lang, Record<StringKey, string>> = { en, fr }
+const catalogs: Record<Lang, Record<StringKey, string>> = { en, fr, ko }
 
 function detectLang(): Lang {
   try {
-    return navigator.language.startsWith('fr') ? 'fr' : 'en'
+    if (navigator.language.startsWith('fr')) return 'fr'
+    if (navigator.language.startsWith('ko')) return 'ko'
+    return 'en'
   } catch {
     return 'en'
   }
