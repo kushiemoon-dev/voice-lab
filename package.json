@@ -26,11 +26,11 @@
     "@vitest/coverage-v8": "^5.0.1",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
-    "happy-dom": "^20.10.6",
+    "happy-dom": "^21.0.4",
     "prettier": "^3.8.3",
     "typescript": "^5.4.5",
     "vite": "^6.4.3",
     "vite-plugin-pwa": "^1.3.0",
-    "vitest": "^5.0.1"
+    "vitest": "^5.1.1"
   }
 }
